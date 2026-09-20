@@ -1,0 +1,338 @@
+<title>Lamphere Labs</title>
+<meta name="description" content="Independent developer tools, built and maintained by Eric Lamphere.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ground: #0c0e0f;
+    --panel: #14171a;
+    --panel-hover: #191d20;
+    --line: #262b2f;
+    --line-soft: #1c2023;
+    --ink: #ecebe6;
+    --ink-dim: #9a9d9e;
+    --ink-faint: #62666a;
+    --amber: #e2a542;
+    --amber-dim: #7a6335;
+    --teal: #4cc9b8;
+  }
+
+  @media (prefers-color-scheme: light) {
+    :root:not([data-theme="dark"]) {
+      --ground: #f7f5f0;
+      --panel: #ffffff;
+      --panel-hover: #fbfaf7;
+      --line: #ddd8ce;
+      --line-soft: #e7e3da;
+      --ink: #1c1b18;
+      --ink-dim: #5b5852;
+      --ink-faint: #918d84;
+      --amber: #a96c0f;
+      --amber-dim: #d6ae6f;
+      --teal: #0f766e;
+    }
+  }
+  :root[data-theme="light"] {
+    --ground: #f7f5f0;
+    --panel: #ffffff;
+    --panel-hover: #fbfaf7;
+    --line: #ddd8ce;
+    --line-soft: #e7e3da;
+    --ink: #1c1b18;
+    --ink-dim: #5b5852;
+    --ink-faint: #918d84;
+    --amber: #a96c0f;
+    --amber-dim: #d6ae6f;
+    --teal: #0f766e;
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--ground);
+    color: var(--ink);
+    font-family: 'IBM Plex Sans', system-ui, sans-serif;
+    padding-inline: 24px;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; }
+
+  .wrap { max-width: 860px; margin: 0 auto; }
+
+  /* ---- header ---- */
+  header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 16px;
+    padding-block: 28px 20px;
+    border-bottom: 1px solid var(--line);
+    flex-wrap: wrap;
+  }
+  .mark {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    text-decoration: none;
+  }
+  .mark .glyph {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 22px;
+    color: var(--amber);
+  }
+  .mark .name {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink);
+  }
+  header .tag {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: var(--ink-faint);
+    letter-spacing: 0.02em;
+  }
+
+  /* ---- hero ---- */
+  .hero {
+    padding-block: 56px 48px;
+    border-bottom: 1px solid var(--line);
+  }
+  .eyebrow {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--amber);
+    margin: 0 0 18px;
+  }
+  h1 {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: clamp(34px, 5.4vw, 54px);
+    line-height: 1.08;
+    letter-spacing: -0.01em;
+    margin: 0 0 20px;
+    text-wrap: balance;
+    max-width: 14ch;
+  }
+  .hero p {
+    font-size: 17px;
+    line-height: 1.6;
+    color: var(--ink-dim);
+    max-width: 52ch;
+    margin: 0;
+  }
+
+  /* ---- registry ---- */
+  .registry {
+    padding-block: 44px;
+  }
+  .registry-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 22px;
+  }
+  .registry-head h2 {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin: 0;
+    font-weight: 500;
+  }
+  .registry-head .count {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: var(--ink-faint);
+  }
+
+  .product {
+    display: block;
+    text-decoration: none;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    background: var(--panel);
+    padding: 26px 28px;
+    transition: border-color 0.15s ease, background 0.15s ease, transform 0.15s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  .product:hover {
+    border-color: var(--teal);
+    background: var(--panel-hover);
+    transform: translateY(-1px);
+  }
+  .product-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 10px;
+  }
+  .product-name {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .product-name .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--teal);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--teal) 20%, transparent);
+    flex-shrink: 0;
+  }
+  .product-name span {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 21px;
+  }
+  .product-arrow {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    color: var(--ink-faint);
+    transition: transform 0.15s ease, color 0.15s ease;
+  }
+  .product:hover .product-arrow {
+    transform: translateX(3px);
+    color: var(--teal);
+  }
+  .product-desc {
+    font-size: 14.5px;
+    line-height: 1.55;
+    color: var(--ink-dim);
+    max-width: 60ch;
+    margin: 0 0 16px;
+  }
+  .product-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .pill {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.02em;
+    color: var(--ink-faint);
+    border: 1px solid var(--line-soft);
+    border-radius: 5px;
+    padding: 3px 8px;
+  }
+
+  .coming-soon {
+    margin-top: 14px;
+    border: 1px dashed var(--line);
+    border-radius: 10px;
+    padding: 20px 28px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .coming-soon .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    border: 1px solid var(--ink-faint);
+    flex-shrink: 0;
+  }
+  .coming-soon span {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    color: var(--ink-faint);
+  }
+
+  /* ---- footer ---- */
+  footer {
+    padding-block: 32px 48px;
+    border-top: 1px solid var(--line);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  footer p {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: var(--ink-faint);
+    margin: 0;
+  }
+  footer .links {
+    display: flex;
+    gap: 18px;
+  }
+  footer a {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: var(--ink-dim);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+  }
+  footer a:hover {
+    color: var(--amber);
+    border-bottom-color: var(--amber);
+  }
+
+  @media (max-width: 480px) {
+    .product { padding: 20px 20px; }
+    .product-top { flex-wrap: wrap; }
+  }
+</style>
+
+<div class="wrap">
+  <header>
+    <a class="mark" href="#">
+      <span class="glyph">L</span>
+      <span class="name">Lamphere&nbsp;Labs</span>
+    </a>
+    <span class="tag">independent developer tools</span>
+  </header>
+
+  <section class="hero">
+    <p class="eyebrow">Field notes from a working engineer</p>
+    <h1>Small, sharp tools for the software you already run.</h1>
+    <p>Lamphere Labs is Eric Lamphere's workshop for developer tooling — software built to solve a real problem first, then shaped into something anyone can install. One product live today, more on the bench.</p>
+  </section>
+
+  <section class="registry">
+    <div class="registry-head">
+      <h2>Products</h2>
+      <span class="count">01 shipped</span>
+    </div>
+
+    <a class="product" href="./product-dbt-ui/index.html">
+      <div class="product-top">
+        <div class="product-name">
+          <span class="dot"></span>
+          <span>dbt-ui</span>
+        </div>
+        <span class="product-arrow">visit product →</span>
+      </div>
+      <p class="product-desc">A local-first desktop app for dbt-core — an interactive dependency graph, live run/build/test with streaming logs, an in-browser SQL editor, and Git, all running against your own machine. No cloud account, no data leaving your laptop.</p>
+      <div class="product-meta">
+        <span class="pill">macOS desktop app</span>
+        <span class="pill">free + pro tier</span>
+        <span class="pill">dbt-core</span>
+      </div>
+    </a>
+
+    <div class="coming-soon">
+      <span class="dot"></span>
+      <span>Next product — in the workshop, not yet named</span>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2026 Lamphere Labs. Built by Eric Lamphere.</p>
+    <div class="links">
+      <a href="mailto:ericjlamphere@gmail.com">Contact</a>
+      <a href="https://github.com" target="_blank" rel="noreferrer">GitHub</a>
+    </div>
+  </footer>
+</div>

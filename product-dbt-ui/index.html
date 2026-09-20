@@ -1,0 +1,509 @@
+<title>dbt-ui — by Lamphere Labs</title>
+<meta name="description" content="A local-first desktop app for dbt-core: interactive DAG, live run/build/test, SQL editor, and Git — all running on your own machine.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ground: #0c0e0f;
+    --panel: #14171a;
+    --panel-raised: #191d20;
+    --line: #262b2f;
+    --line-soft: #1e2225;
+    --ink: #ecebe6;
+    --ink-dim: #9a9d9e;
+    --ink-faint: #62666a;
+    --teal: #4cc9b8;
+    --teal-dim: #2b6960;
+    --teal-glow: rgba(76, 201, 184, 0.14);
+    --amber: #e2a542;
+  }
+
+  @media (prefers-color-scheme: light) {
+    :root:not([data-theme="dark"]) {
+      --ground: #f6f5f1;
+      --panel: #ffffff;
+      --panel-raised: #fbfaf7;
+      --line: #ddd8ce;
+      --line-soft: #e7e3da;
+      --ink: #1c1b18;
+      --ink-dim: #5b5852;
+      --ink-faint: #918d84;
+      --teal: #0f766e;
+      --teal-dim: #5eab9f;
+      --teal-glow: rgba(15, 118, 110, 0.08);
+      --amber: #a96c0f;
+    }
+  }
+  :root[data-theme="light"] {
+    --ground: #f6f5f1;
+    --panel: #ffffff;
+    --panel-raised: #fbfaf7;
+    --line: #ddd8ce;
+    --line-soft: #e7e3da;
+    --ink: #1c1b18;
+    --ink-dim: #5b5852;
+    --ink-faint: #918d84;
+    --teal: #0f766e;
+    --teal-dim: #5eab9f;
+    --teal-glow: rgba(15, 118, 110, 0.08);
+    --amber: #a96c0f;
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--ground);
+    color: var(--ink);
+    font-family: 'IBM Plex Sans', system-ui, sans-serif;
+    padding-inline: 24px;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; }
+  img { max-width: 100%; display: block; }
+
+  .wrap { max-width: 1040px; margin: 0 auto; }
+  .narrow { max-width: 720px; }
+
+  code, .mono { font-family: 'IBM Plex Mono', monospace; }
+
+  /* ---- header ---- */
+  header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding-block: 22px;
+    border-bottom: 1px solid var(--line);
+    flex-wrap: wrap;
+  }
+  .back {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: var(--ink-faint);
+    transition: color 0.15s ease;
+  }
+  .back:hover { color: var(--amber); }
+  .product-mark {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+  }
+  .product-mark .dot {
+    width: 9px; height: 9px; border-radius: 50%;
+    background: var(--teal);
+    box-shadow: 0 0 0 4px var(--teal-glow);
+  }
+  .product-mark span {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 18px;
+  }
+  .top-cta {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: var(--teal);
+    text-decoration: none;
+    border: 1px solid var(--teal-dim);
+    border-radius: 6px;
+    padding: 7px 13px;
+    transition: background 0.15s ease, border-color 0.15s ease;
+  }
+  .top-cta:hover { background: var(--teal-glow); border-color: var(--teal); }
+
+  /* ---- hero ---- */
+  .hero {
+    padding-block: 54px 40px;
+    text-align: center;
+  }
+  .eyebrow {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--teal);
+    margin: 0 auto 18px;
+  }
+  h1 {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: clamp(32px, 5.6vw, 56px);
+    line-height: 1.08;
+    letter-spacing: -0.01em;
+    margin: 0 auto 20px;
+    text-wrap: balance;
+    max-width: 16ch;
+  }
+  .hero p {
+    font-size: 17.5px;
+    line-height: 1.6;
+    color: var(--ink-dim);
+    max-width: 56ch;
+    margin: 0 auto 30px;
+  }
+  .hero-ctas {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .btn {
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-weight: 600;
+    font-size: 14.5px;
+    text-decoration: none;
+    border-radius: 8px;
+    padding: 12px 22px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .btn-primary {
+    background: var(--teal);
+    color: #08110f;
+  }
+  .btn-secondary {
+    border: 1px solid var(--line);
+    color: var(--ink);
+  }
+  .platform-note {
+    margin-top: 14px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: var(--ink-faint);
+  }
+
+  /* ---- hero image ---- */
+  .shot {
+    margin-top: 44px;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 40px 80px -40px rgba(0, 0, 0, 0.5);
+  }
+  .shot img { width: 100%; }
+
+  /* ---- section shared ---- */
+  section { padding-block: 56px; border-top: 1px solid var(--line); }
+  .section-head { margin-bottom: 34px; }
+  .section-head .eyebrow { margin: 0 0 12px; }
+  .section-head h2 {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: clamp(24px, 3.4vw, 32px);
+    margin: 0 0 12px;
+    text-wrap: balance;
+  }
+  .section-head p {
+    color: var(--ink-dim);
+    font-size: 15.5px;
+    line-height: 1.6;
+    margin: 0;
+    max-width: 60ch;
+  }
+
+  /* ---- features ---- */
+  .feature-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--line);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  .feature {
+    background: var(--panel);
+    padding: 24px 22px;
+  }
+  .feature .num {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--teal);
+    margin-bottom: 12px;
+    display: block;
+  }
+  .feature h3 {
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-weight: 600;
+    font-size: 15.5px;
+    margin: 0 0 8px;
+  }
+  .feature p {
+    font-size: 13.5px;
+    line-height: 1.55;
+    color: var(--ink-dim);
+    margin: 0;
+  }
+
+  /* ---- second shot ---- */
+  .shot-row {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  /* ---- pricing ---- */
+  .plans {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+  }
+  .plan {
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 28px 26px;
+    background: var(--panel);
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .plan.pro {
+    border-color: var(--teal-dim);
+    background: linear-gradient(180deg, var(--teal-glow), transparent 60%), var(--panel);
+    position: relative;
+  }
+  .plan-name {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+  }
+  .plan.pro .plan-name { color: var(--teal); }
+  .plan-price {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 34px;
+  }
+  .plan-price small {
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    color: var(--ink-faint);
+  }
+  .plan ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    flex-grow: 1;
+  }
+  .plan li {
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--ink-dim);
+    display: flex;
+    gap: 9px;
+  }
+  .plan li::before {
+    content: "";
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    background: var(--ink-faint);
+    margin-top: 8px;
+    flex-shrink: 0;
+  }
+  .plan.pro li::before { background: var(--teal); }
+  .plan .btn { justify-content: center; margin-top: 6px; }
+
+  /* ---- install ---- */
+  .install-box {
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    background: var(--panel);
+    padding: 26px 28px;
+  }
+  .install-box .step {
+    display: flex;
+    gap: 14px;
+    padding-block: 12px;
+    border-bottom: 1px solid var(--line-soft);
+  }
+  .install-box .step:last-child { border-bottom: none; }
+  .install-box .step-n {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: var(--teal);
+    flex-shrink: 0;
+    width: 20px;
+  }
+  .install-box .step-text {
+    font-size: 14.5px;
+    line-height: 1.55;
+    color: var(--ink-dim);
+  }
+  .install-box .step-text strong { color: var(--ink); font-weight: 600; }
+
+  /* ---- footer ---- */
+  footer {
+    padding-block: 32px 48px;
+    border-top: 1px solid var(--line);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  footer p {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: var(--ink-faint);
+    margin: 0;
+  }
+  footer a {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: var(--ink-dim);
+    text-decoration: none;
+  }
+  footer a:hover { color: var(--teal); }
+
+  @media (max-width: 760px) {
+    .feature-grid { grid-template-columns: 1fr; }
+    .plans { grid-template-columns: 1fr; }
+  }
+</style>
+
+<div class="wrap">
+  <header>
+    <a class="back" href="../index.html">← Lamphere Labs</a>
+    <div class="product-mark">
+      <span class="dot"></span>
+      <span>dbt-ui</span>
+    </div>
+    <a class="top-cta" href="#pricing">Get dbt-ui</a>
+  </header>
+
+  <section class="hero" style="border-top: none; padding-top: 54px;">
+    <p class="eyebrow">Local-first · macOS desktop app</p>
+    <h1>The dbt workbench that never leaves your machine.</h1>
+    <p>An interactive dependency graph, live run/build/test with streaming logs, an in-browser SQL editor, and full Git support — running against your dbt-core projects with no cloud account and no data leaving your laptop.</p>
+    <div class="hero-ctas">
+      <a class="btn btn-primary" href="#pricing">Download for macOS</a>
+      <a class="btn btn-secondary" href="#features">See what's inside</a>
+    </div>
+    <p class="platform-note">Free and open-source core · Pro adds column-level lineage</p>
+
+    <div class="shot">
+      <img src="../assets/img/dag_logs_1600.png" alt="dbt-ui dependency graph with live execution logs and model side panel">
+    </div>
+  </section>
+
+  <section id="features">
+    <div class="section-head">
+      <p class="eyebrow">What's inside</p>
+      <h2>Everything you'd script together, already wired up.</h2>
+      <p>dbt-ui replaces the loop of terminal, docs server, and a half-dozen browser tabs with one app that stays in sync with your project on disk.</p>
+    </div>
+    <div class="feature-grid">
+      <div class="feature">
+        <span class="num">01</span>
+        <h3>Interactive DAG</h3>
+        <p>Dependency graph with live status badges, dbt selector syntax (+model, tag:x), and real-time updates while models run. Multi-select to run, build, or test a whole slice at once.</p>
+      </div>
+      <div class="feature">
+        <span class="num">02</span>
+        <h3>Run, build, test</h3>
+        <p>Trigger any dbt command from the side panel with upstream/downstream/full selector support. Logs stream live — no separate terminal tab to babysit.</p>
+      </div>
+      <div class="feature">
+        <span class="num">03</span>
+        <h3>SQL Workspace</h3>
+        <p>A standalone scratchpad with Monaco (the VS Code editor), a Compiled SQL tab, and a resizable results pane. Cmd+Enter runs, Cmd+S saves.</p>
+      </div>
+      <div class="feature">
+        <span class="num">04</span>
+        <h3>File explorer &amp; editor</h3>
+        <p>Browse your project tree and edit model SQL, YAML, and config in-browser, with ref/source autocomplete and cmd+click navigation.</p>
+      </div>
+      <div class="feature">
+        <span class="num">05</span>
+        <h3>Source control</h3>
+        <p>A VSCode-style Git panel: stage, diff, commit, push/pull with live streaming output, branch switching, and commit history — without leaving the app.</p>
+      </div>
+      <div class="feature">
+        <span class="num">06</span>
+        <h3>Health &amp; drift checks</h3>
+        <p>Run dbt debug for a structured pass/fail table, or scan for schema drift between your warehouse and manifest.json — both from the same window.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-head">
+      <p class="eyebrow">Editing, not just browsing</p>
+      <h2>Open a model, see everything about it.</h2>
+      <p>The side panel surfaces dependencies, materialization, test coverage, and run controls without a page navigation — and the same Monaco editor VS Code uses is right there for edits.</p>
+    </div>
+    <div class="shot">
+      <img src="../assets/img/files_model_exec_dag_1600.png" alt="dbt-ui file explorer with SQL editor, model metadata panel, and execution DAG">
+    </div>
+  </section>
+
+  <section id="pricing">
+    <div class="section-head">
+      <p class="eyebrow">Pricing</p>
+      <h2>Free for the whole workflow. Pro for column lineage.</h2>
+      <p>dbt-ui's core is free and open-source, permanently. Pro is a single add-on for teams that want column-level lineage tracing across their DAG.</p>
+    </div>
+    <div class="plans">
+      <div class="plan">
+        <span class="plan-name">Base</span>
+        <div class="plan-price">Free <small>forever</small></div>
+        <ul>
+          <li>Full interactive DAG &amp; run/build/test</li>
+          <li>File explorer, SQL editor, terminal</li>
+          <li>Git source control</li>
+          <li>Health check &amp; schema drift</li>
+          <li>Column profiling &amp; test coverage heatmap</li>
+          <li>Run history</li>
+        </ul>
+        <a class="btn btn-secondary" href="#" style="pointer-events: none; opacity: 0.6;">Included on download</a>
+      </div>
+      <div class="plan pro">
+        <span class="plan-name">Pro</span>
+        <div class="plan-price">$5.99 <small>/ month</small></div>
+        <ul>
+          <li>Everything in Base</li>
+          <li>Column-level lineage tracing across the DAG</li>
+          <li>Derived from compiled SQL — no yml docs required</li>
+          <li>Priority support</li>
+        </ul>
+        <a class="btn btn-primary" href="#install">Upgrade after install</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="install">
+    <div class="section-head">
+      <p class="eyebrow">Get started</p>
+      <h2>Three steps to your first DAG.</h2>
+    </div>
+    <div class="install-box narrow">
+      <div class="step">
+        <span class="step-n mono">01</span>
+        <span class="step-text"><strong>Download</strong> the macOS app — no account, no sign-up required to start.</span>
+      </div>
+      <div class="step">
+        <span class="step-n mono">02</span>
+        <span class="step-text"><strong>Point it at your dbt projects folder.</strong> dbt-ui scans for <code>dbt_project.yml</code> files and lists everything it finds.</span>
+      </div>
+      <div class="step">
+        <span class="step-n mono">03</span>
+        <span class="step-text"><strong>Open a project.</strong> dbt-ui runs your init pipeline, installs dependencies, and hands you a live DAG.</span>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>dbt-ui by Lamphere Labs</p>
+    <a href="../index.html">← all products</a>
+  </footer>
+</div>
