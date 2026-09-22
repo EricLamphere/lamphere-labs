@@ -103,6 +103,11 @@
     font-weight: 600;
     font-size: 18px;
   }
+  .header-ctas {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
   .top-cta {
     font-family: 'IBM Plex Mono', monospace;
     font-size: 12px;
@@ -114,6 +119,11 @@
     transition: background 0.15s ease, border-color 0.15s ease;
   }
   .top-cta:hover { background: var(--teal-glow); border-color: var(--teal); }
+  .top-cta-ghost {
+    color: var(--ink-dim);
+    border-color: var(--line);
+  }
+  .top-cta-ghost:hover { background: var(--line-soft); border-color: var(--ink-faint); }
 
   /* ---- hero ---- */
   .hero {
@@ -467,10 +477,15 @@
     text-decoration: none;
   }
   footer a:hover { color: var(--teal); }
+  footer .links {
+    display: flex;
+    gap: 18px;
+  }
 
   @media (max-width: 760px) {
     .feature-grid { grid-template-columns: 1fr; }
     .plans { grid-template-columns: 1fr; }
+    .header-ctas { gap: 8px; }
   }
 </style>
 
@@ -481,7 +496,10 @@
       <span class="dot"></span>
       <span>dbt-ui</span>
     </div>
-    <a class="top-cta" href="#pricing">Get dbt-ui</a>
+    <div class="header-ctas">
+      <a class="top-cta top-cta-ghost" href="https://github.com/EricLamphere/dbt-ui" target="_blank" rel="noreferrer">GitHub ↗</a>
+      <a class="top-cta" href="#pricing">Get dbt-ui</a>
+    </div>
   </header>
 
   <section class="hero" style="border-top: none; padding-top: 54px;">
@@ -681,7 +699,10 @@
 
   <footer>
     <p>dbt-ui by Lamphere Labs</p>
-    <a href="../index.html">← all products</a>
+    <div class="links">
+      <a href="https://github.com/EricLamphere/dbt-ui" target="_blank" rel="noreferrer">GitHub</a>
+      <a href="../index.html">← all products</a>
+    </div>
   </footer>
 </div>
 
