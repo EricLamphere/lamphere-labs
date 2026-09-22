@@ -507,10 +507,10 @@
     <h1>The dbt workbench that never leaves your machine.</h1>
     <p>An interactive dependency graph, live run/build/test with streaming logs, an in-browser SQL editor, and full Git support — running against your dbt-core projects with no cloud account and no data leaving your laptop.</p>
     <div class="hero-ctas">
-      <a class="btn btn-primary" href="#pricing">Download for macOS</a>
+      <a class="btn btn-primary" href="https://github.com/EricLamphere/dbt-ui/releases/latest" target="_blank" rel="noreferrer">Download for macOS</a>
       <a class="btn btn-secondary" href="#features">See what's inside</a>
     </div>
-    <p class="platform-note">Free and open-source core · Pro adds column-level lineage</p>
+    <p class="platform-note">Free and open-source core · Pro adds column-level lineage · Apple Silicon only, unsigned build</p>
 
     <div class="shot">
       <img src="../assets/img/dag_logs_1600.png" alt="dbt-ui dependency graph with live execution logs and model side panel">
@@ -660,7 +660,7 @@
           <li>Column profiling &amp; test coverage heatmap</li>
           <li>Run history</li>
         </ul>
-        <a class="btn btn-secondary" href="#" style="pointer-events: none; opacity: 0.6;">Included on download</a>
+        <a class="btn btn-secondary" href="https://github.com/EricLamphere/dbt-ui/releases/latest" target="_blank" rel="noreferrer">Included on download</a>
       </div>
       <div class="plan pro">
         <span class="plan-name">Pro</span>
@@ -688,10 +688,14 @@
       </div>
       <div class="step">
         <span class="step-n mono">02</span>
-        <span class="step-text"><strong>Point it at your dbt projects folder.</strong> dbt-ui scans for <code>dbt_project.yml</code> files and lists everything it finds.</span>
+        <span class="step-text"><strong>Open it.</strong> The build isn't code-signed yet, so macOS will say it's from an unidentified developer — right-click (or Control-click) <code>dbt-ui.app</code> → <strong>Open</strong> → <strong>Open</strong> again to confirm. Only needed once.</span>
       </div>
       <div class="step">
         <span class="step-n mono">03</span>
+        <span class="step-text"><strong>Point it at your dbt projects folder.</strong> dbt-ui scans for <code>dbt_project.yml</code> files and lists everything it finds.</span>
+      </div>
+      <div class="step">
+        <span class="step-n mono">04</span>
         <span class="step-text"><strong>Open a project.</strong> dbt-ui runs your init pipeline, installs dependencies, and hands you a live DAG.</span>
       </div>
     </div>
