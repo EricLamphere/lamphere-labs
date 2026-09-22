@@ -66,6 +66,14 @@
   .narrow { max-width: 720px; }
 
   code, .mono { font-family: 'IBM Plex Mono', monospace; }
+  .step-text code {
+    background: var(--panel-raised);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 1px 6px;
+    font-size: 0.92em;
+    white-space: nowrap;
+  }
 
   /* ---- header ---- */
   header {
@@ -510,7 +518,7 @@
       <a class="btn btn-primary" href="https://github.com/EricLamphere/dbt-ui/releases/latest" target="_blank" rel="noreferrer">Download for macOS</a>
       <a class="btn btn-secondary" href="#features">See what's inside</a>
     </div>
-    <p class="platform-note">Free and open-source core · Pro adds column-level lineage · Apple Silicon only, unsigned build</p>
+    <p class="platform-note">Free and open-source core · Pro adds column-level lineage · Apple Silicon only, not yet notarized</p>
 
     <div class="shot">
       <img src="../assets/img/dag_logs_1600.png" alt="dbt-ui dependency graph with live execution logs and model side panel">
@@ -688,7 +696,7 @@
       </div>
       <div class="step">
         <span class="step-n mono">02</span>
-        <span class="step-text"><strong>Open it.</strong> The build isn't code-signed yet, so macOS will say it's from an unidentified developer — right-click (or Control-click) <code>dbt-ui.app</code> → <strong>Open</strong> → <strong>Open</strong> again to confirm. Only needed once.</span>
+        <span class="step-text"><strong>Right-click → Open the first time.</strong> There's no paid Apple Developer certificate behind this build yet, so macOS will flag it as from an unidentified developer — right-click (or Control-click) <code>dbt-ui.app</code> in Applications → <strong>Open</strong> → <strong>Open</strong> again to confirm. Only needed once.</span>
       </div>
       <div class="step">
         <span class="step-n mono">03</span>
