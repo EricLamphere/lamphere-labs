@@ -264,6 +264,8 @@
     color: var(--ink-faint);
     margin: 0;
   }
+  .footer-text { display: flex; flex-direction: column; gap: 6px; }
+  footer p.invite { color: var(--ink-dim); }
   footer .links {
     display: flex;
     gap: 18px;
@@ -296,14 +298,14 @@
   </header>
 
   <section class="hero">
-    <p class="eyebrow">Field notes from a working engineer</p>
-    <h1>Small, sharp tools for the software you already run.</h1>
-    <p>Lamphere Labs is Eric Lamphere's workshop for developer tooling — software built to solve a real problem first, then shaped into something anyone can install. One product live today, more on the bench.</p>
+    <p class="eyebrow">Notes from a working engineer</p>
+    <h1>Useful tools for working engineers.</h1>
+    <p>Most of what I build starts the same way: I hit the same friction for the tenth time and decide to fix it instead of working around it again. Some of those fixes turn out to be particularly useful. Those end up here.</p>
   </section>
 
   <section class="registry">
     <div class="registry-head">
-      <h2>Products</h2>
+      <h2>Tools</h2>
       <span class="count">01 shipped</span>
     </div>
 
@@ -315,7 +317,7 @@
         </div>
         <span class="product-arrow">visit product →</span>
       </div>
-      <p class="product-desc">A local-first desktop app for dbt-core — an interactive dependency graph, live run/build/test with streaming logs, an in-browser SQL editor, and Git, all running against your own machine. No cloud account, no data leaving your laptop.</p>
+      <p class="product-desc">A desktop app for dbt-core: DAG, run/build/test, SQL workspace, Git, lineage, health checks, run history, and environment control. No cloud, no account. The core is free and MIT-licensed; Pro adds some additional helpful features.</p>
       <div class="product-meta">
         <span class="pill">macOS desktop app</span>
         <span class="pill">free + pro tier</span>
@@ -325,12 +327,15 @@
 
     <div class="coming-soon">
       <span class="dot"></span>
-      <span>Next product — in the workshop, not yet named</span>
+      <span>More tools to come…</span>
     </div>
   </section>
 
   <footer>
-    <p>© 2026 Lamphere Labs. Built by Eric Lamphere.</p>
+    <div class="footer-text">
+      <p class="invite">If you use one of these, I'd love to hear from you — <a href="mailto:ericjlamphere@gmail.com">say hi</a>.</p>
+      <p>© 2026 Lamphere Labs. Built nights and weekends by Eric Lamphere.</p>
+    </div>
     <div class="links">
       <a href="mailto:ericjlamphere@gmail.com">Contact</a>
       <a href="https://github.com/EricLamphere" target="_blank" rel="noreferrer">GitHub</a>
