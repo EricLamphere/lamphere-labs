@@ -277,6 +277,16 @@
     gap: 20px;
   }
 
+  .plan-note {
+    margin: 10px 0 0;
+    font-size: 12px;
+    line-height: 1.5;
+    color: var(--ink-faint);
+    text-align: center;
+  }
+  .plan-note strong { color: var(--ink-dim); font-weight: 500; }
+  .plan-note a, .step-text a { color: var(--teal); }
+
   /* ---- gallery ---- */
   .gallery-grid {
     display: grid;
@@ -532,7 +542,7 @@
       <a class="btn btn-primary" href="https://github.com/EricLamphere/dbt-ui/releases/latest" target="_blank" rel="noreferrer">Download for macOS</a>
       <a class="btn btn-secondary" href="#features">See what's inside</a>
     </div>
-    <p class="platform-note">Free and open-source core · Pro adds column-level lineage · Apple Silicon only, not yet notarized</p>
+    <p class="platform-note">Free and open-source core · Optional Pro upgrade · Apple Silicon only, not yet notarized</p>
 
     <div class="shot">
       <img src="../assets/img/dag_logs_2560.png" alt="dbt-ui dependency graph with live execution logs and model side panel">
@@ -667,8 +677,8 @@
   <section id="pricing">
     <div class="section-head">
       <p class="eyebrow">Pricing</p>
-      <h2>Free for the whole workflow. Pro for column lineage.</h2>
-      <p>dbt-ui's core is free and open-source, permanently. Pro is a single add-on for teams that want column-level lineage tracing across their DAG.</p>
+      <h2>Free for the whole workflow. Pro for the extras.</h2>
+      <p>dbt-ui's core is free and open-source, permanently. Pro is an optional subscription that unlocks advanced features — starting with column-level lineage, with more on the way — and helps fund continued development.</p>
     </div>
     <div class="plans">
       <div class="plan">
@@ -682,7 +692,7 @@
           <li>Column profiling &amp; test coverage heatmap</li>
           <li>Run history</li>
         </ul>
-        <a class="btn btn-secondary" href="https://github.com/EricLamphere/dbt-ui/releases/latest" target="_blank" rel="noreferrer">Included on download</a>
+        <a class="btn btn-secondary" href="https://github.com/EricLamphere/dbt-ui/releases/latest" target="_blank" rel="noreferrer">Download</a>
       </div>
       <div class="plan pro">
         <span class="plan-name">Pro</span>
@@ -691,9 +701,11 @@
           <li>Everything in Base</li>
           <li>Column-level lineage tracing across the DAG</li>
           <li>Derived from compiled SQL — no yml docs required</li>
+          <li>New Pro features as they ship</li>
           <li>Priority support</li>
         </ul>
-        <a class="btn btn-primary" href="#install">Upgrade after install</a>
+        <a class="btn btn-primary" href="https://buy.polar.sh/polar_cl_KWvxkHPFizaGyCqpQ5LcrFVEh3zHe9c42aWXO0mSwnJ" target="_blank" rel="noreferrer">Subscribe to Pro</a>
+        <p class="plan-note">You'll get a license key by email — paste it into <strong>Settings → Subscription</strong> in the app. <a href="#install">How it works</a></p>
       </div>
     </div>
   </section>
@@ -701,7 +713,7 @@
   <section id="install">
     <div class="section-head">
       <p class="eyebrow">Get started</p>
-      <h2>Four steps to your first DAG.</h2>
+      <h2>Three steps to your first DAG.</h2>
     </div>
     <div class="install-box narrow">
       <div class="step">
@@ -710,15 +722,15 @@
       </div>
       <div class="step">
         <span class="step-n mono">02</span>
-        <span class="step-text"><strong>Approve it once, in two steps.</strong> There's no paid Apple Developer certificate behind this build yet. Right-click (or Control-click) <code>dbt-ui.app</code> in Applications → <strong>Open</strong> → click <strong>Done</strong> on the warning (this alone won't launch it) → then go to <strong>System Settings → Privacy &amp; Security</strong> and click <strong>Open Anyway</strong> next to dbt-ui. Only needed once.</span>
-      </div>
-      <div class="step">
-        <span class="step-n mono">03</span>
         <span class="step-text"><strong>Point it at your dbt projects folder.</strong> dbt-ui scans for <code>dbt_project.yml</code> files and lists everything it finds.</span>
       </div>
       <div class="step">
-        <span class="step-n mono">04</span>
+        <span class="step-n mono">03</span>
         <span class="step-text"><strong>Open a project.</strong> dbt-ui runs your init pipeline, installs dependencies, and hands you a live DAG.</span>
+      </div>
+      <div class="step">
+        <span class="step-n mono">+</span>
+        <span class="step-text"><strong>Optional: activate Pro.</strong> <a href="https://buy.polar.sh/polar_cl_KWvxkHPFizaGyCqpQ5LcrFVEh3zHe9c42aWXO0mSwnJ" target="_blank" rel="noreferrer">Subscribe</a> here or from <strong>Upgrade to Pro</strong> in the app's header. Polar emails you a license key — paste it into <strong>Settings → Subscription</strong> and Pro features unlock right away.</span>
       </div>
     </div>
   </section>
