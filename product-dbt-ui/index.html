@@ -1,3 +1,4 @@
+<meta charset="utf-8">
 <title>dbt-ui — by Lamphere Labs</title>
 <meta name="description" content="A local-first desktop app for dbt-core: interactive DAG, live run/build/test, SQL editor, and Git — all running on your own machine.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -202,6 +203,11 @@
     border-radius: 12px;
     overflow: hidden;
     box-shadow: 0 40px 80px -40px rgba(0, 0, 0, 0.5);
+    /* break out of the 1040px text column so UI text stays legible */
+    width: min(1320px, calc(100vw - 48px));
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
   }
   .shot img { width: 100%; }
 
@@ -268,8 +274,8 @@
   /* ---- gallery ---- */
   .gallery-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 14px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
   }
   .gallery-item {
     border: 1px solid var(--line);
@@ -299,13 +305,14 @@
     z-index: 50;
     align-items: center;
     justify-content: center;
-    padding: 32px;
+    padding: 72px 84px;
     cursor: zoom-out;
   }
   .lightbox.open { display: flex; }
   .lightbox img {
-    max-width: min(1100px, 100%);
-    max-height: 88vh;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
     border-radius: 10px;
     border: 1px solid var(--line);
     box-shadow: 0 40px 80px -30px rgba(0, 0, 0, 0.7);
@@ -359,6 +366,7 @@
     text-align: center;
   }
   @media (max-width: 760px) {
+    .lightbox { padding: 64px 12px; }
     .lightbox-nav { width: 38px; height: 38px; font-size: 17px; }
     .lightbox-prev { left: 10px; }
     .lightbox-next { right: 10px; }
@@ -521,7 +529,7 @@
     <p class="platform-note">Free and open-source core · Pro adds column-level lineage · Apple Silicon only, not yet notarized</p>
 
     <div class="shot">
-      <img src="../assets/img/dag_logs_1600.png" alt="dbt-ui dependency graph with live execution logs and model side panel">
+      <img src="../assets/img/dag_logs_2560.png" alt="dbt-ui dependency graph with live execution logs and model side panel">
     </div>
   </section>
 
@@ -572,7 +580,7 @@
       <p>The side panel surfaces dependencies, materialization, test coverage, and run controls without a page navigation — and the same Monaco editor VS Code uses is right there for edits.</p>
     </div>
     <div class="shot">
-      <img src="../assets/img/files_model_exec_dag_1600.png" alt="dbt-ui file explorer with SQL editor, model metadata panel, and execution DAG">
+      <img src="../assets/img/files_model_exec_dag_2560.png" alt="dbt-ui file explorer with SQL editor, model metadata panel, and execution DAG">
     </div>
   </section>
 
@@ -583,68 +591,68 @@
       <p>From project discovery to schema drift checks — a tour of what's actually in the window when you're using dbt-ui.</p>
     </div>
     <div class="gallery-grid">
-      <div class="gallery-item" data-full="../assets/img/homepage_1200.png" data-cap="Project discovery — scans your workspace for dbt projects">
-        <img src="../assets/img/homepage_1200.png" alt="dbt-ui project list homepage">
+      <div class="gallery-item" data-full="../assets/img/homepage_2400.png" data-cap="Project discovery — scans your workspace for dbt projects">
+        <img src="../assets/img/homepage_1200.png" loading="lazy" alt="dbt-ui project list homepage">
         <div class="gallery-cap">Homepage</div>
       </div>
-      <div class="gallery-item" data-full="../assets/img/settings_1200.png" data-cap="Global settings — profiles, requirements, theme, and subscription in one place">
-        <img src="../assets/img/settings_1200.png" alt="dbt-ui global settings modal">
+      <div class="gallery-item" data-full="../assets/img/settings_2400.png" data-cap="Global settings — profiles, requirements, theme, and subscription in one place">
+        <img src="../assets/img/settings_1200.png" loading="lazy" alt="dbt-ui global settings modal">
         <div class="gallery-cap">Global settings</div>
       </div>
-      <div class="gallery-item" data-full="../assets/img/environment_1200.png" data-cap="Environment tab — profiles, env vars, and per-project settings">
-        <img src="../assets/img/environment_1200.png" alt="dbt-ui environment and profile settings">
+      <div class="gallery-item" data-full="../assets/img/environment_2400.png" data-cap="Environment tab — profiles, env vars, and per-project settings">
+        <img src="../assets/img/environment_1200.png" loading="lazy" alt="dbt-ui environment and profile settings">
         <div class="gallery-cap">Environment &amp; profiles</div>
       </div>
-      <div class="gallery-item" data-full="../assets/img/initialization_1200.png" data-cap="Init pipeline — pip install, dbt deps, and custom scripts run automatically">
-        <img src="../assets/img/initialization_1200.png" alt="dbt-ui initialization pipeline steps">
+      <div class="gallery-item" data-full="../assets/img/initialization_2400.png" data-cap="Init pipeline — pip install, dbt deps, and custom scripts run automatically">
+        <img src="../assets/img/initialization_1200.png" loading="lazy" alt="dbt-ui initialization pipeline steps">
         <div class="gallery-cap">Initialization pipeline</div>
       </div>
-      <div class="gallery-item" data-full="../assets/img/file_explorer_data_preview_1200.png" data-cap="File explorer — Data Preview tab, query any model's output without leaving the editor">
-        <img src="../assets/img/file_explorer_data_preview_1200.png" alt="dbt-ui file explorer data preview tab">
+      <div class="gallery-item" data-full="../assets/img/file_explorer_data_preview_2400.png" data-cap="File explorer — Data Preview tab, query any model's output without leaving the editor">
+        <img src="../assets/img/file_explorer_data_preview_1200.png" loading="lazy" alt="dbt-ui file explorer data preview tab">
         <div class="gallery-cap">Data preview</div>
       </div>
-      <div class="gallery-item" data-full="../assets/img/file_explorer_profile_1200.png" data-cap="File explorer — column profile: row count, null%, distinct, min/max, and samples">
-        <img src="../assets/img/file_explorer_profile_1200.png" alt="dbt-ui file explorer column profile tab">
+      <div class="gallery-item" data-full="../assets/img/file_explorer_profile_2400.png" data-cap="File explorer — column profile: row count, null%, distinct, min/max, and samples">
+        <img src="../assets/img/file_explorer_profile_1200.png" loading="lazy" alt="dbt-ui file explorer column profile tab">
         <div class="gallery-cap">Column profile</div>
       </div>
-      <div class="gallery-item" data-full="../assets/img/column_lineage_1200.png" data-cap="Column-level lineage (Pro) — trace any column across the DAG">
-        <img src="../assets/img/column_lineage_1200.png" alt="dbt-ui column-level lineage tracing in the DAG">
+      <div class="gallery-item" data-full="../assets/img/column_lineage_2400.png" data-cap="Column-level lineage (Pro) — trace any column across the DAG">
+        <img src="../assets/img/column_lineage_1200.png" loading="lazy" alt="dbt-ui column-level lineage tracing in the DAG">
         <div class="gallery-cap">Column lineage (Pro)</div>
       </div>
-      <div class="gallery-item" data-full="../assets/img/docs_model_1200.png" data-cap="Native docs browser — columns, descriptions, lineage, all searchable">
-        <img src="../assets/img/docs_model_1200.png" alt="dbt-ui native docs browser showing model detail">
+      <div class="gallery-item" data-full="../assets/img/docs_model_2400.png" data-cap="Native docs browser — columns, descriptions, lineage, all searchable">
+        <img src="../assets/img/docs_model_1200.png" loading="lazy" alt="dbt-ui native docs browser showing model detail">
         <div class="gallery-cap">Docs browser</div>
       </div>
-      <div class="gallery-item" data-full="../assets/img/docs_macro_1200.png" data-cap="Docs — macros with a live &quot;Try It&quot; compiler for arguments and Jinja">
-        <img src="../assets/img/docs_macro_1200.png" alt="dbt-ui docs macro try it panel">
+      <div class="gallery-item" data-full="../assets/img/docs_macro_2400.png" data-cap="Docs — macros with a live &quot;Try It&quot; compiler for arguments and Jinja">
+        <img src="../assets/img/docs_macro_1200.png" loading="lazy" alt="dbt-ui docs macro try it panel">
         <div class="gallery-cap">Macro docs</div>
       </div>
-      <div class="gallery-item" data-full="../assets/img/sql_workspace_1200.png" data-cap="SQL Workspace — Monaco editor, compiled SQL, and live query results">
-        <img src="../assets/img/sql_workspace_1200.png" alt="dbt-ui SQL workspace with query results">
+      <div class="gallery-item" data-full="../assets/img/sql_workspace_2400.png" data-cap="SQL Workspace — Monaco editor, compiled SQL, and live query results">
+        <img src="../assets/img/sql_workspace_1200.png" loading="lazy" alt="dbt-ui SQL workspace with query results">
         <div class="gallery-cap">SQL Workspace</div>
       </div>
-      <div class="gallery-item" data-full="../assets/img/run_history_1200.png" data-cap="Run history — every invocation, with duration and per-node results">
-        <img src="../assets/img/run_history_1200.png" alt="dbt-ui run history table">
+      <div class="gallery-item" data-full="../assets/img/run_history_2400.png" data-cap="Run history — every invocation, with duration and per-node results">
+        <img src="../assets/img/run_history_1200.png" loading="lazy" alt="dbt-ui run history table">
         <div class="gallery-cap">Run history</div>
       </div>
-      <div class="gallery-item" data-full="../assets/img/health_check_1200.png" data-cap="Health check — structured dbt debug output, pass/fail per check">
-        <img src="../assets/img/health_check_1200.png" alt="dbt-ui health check panel">
+      <div class="gallery-item" data-full="../assets/img/health_check_2400.png" data-cap="Health check — structured dbt debug output, pass/fail per check">
+        <img src="../assets/img/health_check_1200.png" loading="lazy" alt="dbt-ui health check panel">
         <div class="gallery-cap">Health check</div>
       </div>
-      <div class="gallery-item" data-full="../assets/img/schema_drift_1200.png" data-cap="Schema drift — compares warehouse columns against manifest.json">
-        <img src="../assets/img/schema_drift_1200.png" alt="dbt-ui schema drift detection">
+      <div class="gallery-item" data-full="../assets/img/schema_drift_2400.png" data-cap="Schema drift — compares warehouse columns against manifest.json">
+        <img src="../assets/img/schema_drift_1200.png" loading="lazy" alt="dbt-ui schema drift detection">
         <div class="gallery-cap">Schema drift</div>
       </div>
-      <div class="gallery-item" data-full="../assets/img/source_freshness_1200.png" data-cap="Source freshness — per-source age against warn/error thresholds">
-        <img src="../assets/img/source_freshness_1200.png" alt="dbt-ui source freshness check">
+      <div class="gallery-item" data-full="../assets/img/source_freshness_2400.png" data-cap="Source freshness — per-source age against warn/error thresholds">
+        <img src="../assets/img/source_freshness_1200.png" loading="lazy" alt="dbt-ui source freshness check">
         <div class="gallery-cap">Source freshness</div>
       </div>
-      <div class="gallery-item" data-full="../assets/img/source_control_1200.png" data-cap="Source control — VSCode-style Git panel with Monaco diff viewer">
-        <img src="../assets/img/source_control_1200.png" alt="dbt-ui source control diff view">
+      <div class="gallery-item" data-full="../assets/img/source_control_2400.png" data-cap="Source control — VSCode-style Git panel with Monaco diff viewer">
+        <img src="../assets/img/source_control_1200.png" loading="lazy" alt="dbt-ui source control diff view">
         <div class="gallery-cap">Source control</div>
       </div>
-      <div class="gallery-item" data-full="../assets/img/light_theme_1200.png" data-cap="Light theme — the whole app, not just a dark mode afterthought">
-        <img src="../assets/img/light_theme_1200.png" alt="dbt-ui light theme">
+      <div class="gallery-item" data-full="../assets/img/light_theme_2400.png" data-cap="Light theme — the whole app, not just a dark mode afterthought">
+        <img src="../assets/img/light_theme_1200.png" loading="lazy" alt="dbt-ui light theme">
         <div class="gallery-cap">Light theme</div>
       </div>
     </div>
