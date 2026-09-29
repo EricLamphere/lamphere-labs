@@ -1,0 +1,3 @@
+# Cloudflare Pages redirects. The dbt-ui page moved from /product-dbt-ui to /tools/dbt-ui.
+/product-dbt-ui            /tools/dbt-ui/          301
+/product-dbt-ui/*          /tools/dbt-ui/:splat    301
