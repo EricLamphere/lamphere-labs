@@ -6,8 +6,9 @@ Static site for [lampherelabs.com](https://lampherelabs.com), hosted on Cloudfla
 
 ```
 index.html              Homepage
-product-dbt-ui/          dbt-ui product page (lampherelabs.com/product-dbt-ui)
-assets/img/               Images used across pages
+tools/dbt-ui/           dbt-ui product page (lampherelabs.com/tools/dbt-ui)
+assets/img/             Images used across pages
+_redirects              Cloudflare Pages redirects (old /product-dbt-ui → /tools/dbt-ui)
 ```
 
 No build step — plain HTML/CSS, no framework, no package.json. Add new pages as `<folder>/index.html` so they're reachable at `lampherelabs.com/<folder>`.
