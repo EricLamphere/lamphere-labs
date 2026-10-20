@@ -1,7 +1,7 @@
 <meta charset="utf-8">
 <title>Wickd — the desktop app for dbt · Lamphere Labs</title>
-<link rel="icon" type="image/svg+xml" href="../../assets/img/logo.svg">
-<link rel="apple-touch-icon" href="../../assets/img/apple-touch-icon.png">
+<link rel="icon" type="image/svg+xml" href="../../assets/img/wickd-mark-auto.svg">
+<link rel="apple-touch-icon" href="../../assets/img/wickd-apple-touch-icon.png">
 <meta name="description" content="Wickd is a local-first desktop app for dbt-core: interactive DAG, live run/build/test, SQL editor, and Git — all running on your own machine.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -108,10 +108,14 @@
     align-items: center;
     gap: 9px;
   }
-  .product-mark .dot {
-    width: 9px; height: 9px; border-radius: 50%;
-    background: var(--teal);
-    box-shadow: 0 0 0 4px var(--teal-glow);
+  .product-mark img {
+    height: 30px; width: auto;
+    display: block;
+  }
+  .hero-icon {
+    height: 128px; width: auto;
+    display: block;
+    margin: 0 auto 22px;
   }
   .product-mark span {
     font-family: 'Fraunces', serif;
@@ -169,6 +173,13 @@
     color: var(--ink-dim);
     max-width: 56ch;
     margin: 0 auto 30px;
+  }
+  .hero p.eyebrow {
+    font-size: 12px;
+    line-height: 1.5;
+    color: var(--teal);
+    max-width: none;
+    margin: 0 auto 18px;
   }
   .hero-ctas {
     display: flex;
@@ -527,7 +538,7 @@
   <header>
     <a class="back" href="../../index.html">← <svg class="logo" viewBox="0 0 120 120" aria-hidden="true"><rect class="t" x="20" y="20" width="18" height="80"/><rect class="t" x="20" y="82" width="54" height="18"/><rect class="c" x="82" y="20" width="18" height="80"/><rect class="c" x="46" y="20" width="54" height="18"/><circle class="a" cx="60" cy="62" r="20" fill-opacity="0.1"/><circle class="a" cx="60" cy="62" r="15" fill-opacity="0.18"/><rect class="c" x="59" y="38" width="2" height="14"/><circle class="a" cx="60" cy="62" r="10"/></svg>Lamphere Labs</a>
     <div class="product-mark">
-      <span class="dot"></span>
+      <picture><source srcset="../../assets/img/wickd-mark-light.svg" media="(prefers-color-scheme: light)"><img src="../../assets/img/wickd-mark.svg" alt=""></picture>
       <span>Wickd</span>
     </div>
     <div class="header-ctas">
@@ -537,6 +548,7 @@
   </header>
 
   <section class="hero" style="border-top: none; padding-top: 54px;">
+    <picture><source srcset="../../assets/img/wickd-mark-light.svg" media="(prefers-color-scheme: light)"><img src="../../assets/img/wickd-mark.svg" class="hero-icon" alt="Wickd logo: a data graph shaped like a flame"></picture>
     <p class="eyebrow">Wickd (pronounced <em>wicked</em>) · the desktop app for dbt</p>
     <h1>The dbt workbench that never leaves your machine.</h1>
     <p>An interactive dependency graph, live run/build/test with streaming logs, an in-browser SQL editor, and full Git support — running against your dbt-core projects with no cloud account and no data leaving your laptop.</p>

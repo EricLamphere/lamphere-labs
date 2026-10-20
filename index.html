@@ -189,6 +189,12 @@
     box-shadow: 0 0 0 3px color-mix(in srgb, var(--teal) 20%, transparent);
     flex-shrink: 0;
   }
+  .product-name .product-icon {
+    height: 28px;
+    width: auto;
+    display: block;
+    flex-shrink: 0;
+  }
   .product-name span {
     font-family: 'Fraunces', serif;
     font-weight: 600;
@@ -312,7 +318,7 @@
     <a class="product" href="./tools/wickd/">
       <div class="product-top">
         <div class="product-name">
-          <span class="dot"></span>
+          <picture><source srcset="./assets/img/wickd-mark-light.svg" media="(prefers-color-scheme: light)"><img src="./assets/img/wickd-mark.svg" class="product-icon" alt=""></picture>
           <span>Wickd</span>
         </div>
         <span class="product-arrow">details →</span>
