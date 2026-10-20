@@ -3,7 +3,7 @@
 <title>wickd — the desktop app for dbt · Lamphere Labs</title>
 <link rel="icon" type="image/svg+xml" href="../../assets/img/wickd-mark-auto.svg">
 <link rel="apple-touch-icon" href="../../assets/img/wickd-apple-touch-icon.png">
-<meta name="description" content="wickd is a local-first desktop app for dbt-core: interactive DAG, live run/build/test, SQL editor, and Git — all running on your own machine.">
+<meta name="description" content="wickd is a local-first desktop app for dbt-core: interactive DAG, live run/build/test, SQL editor, Git, and Wicky, a local AI assistant — all running on your own machine.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -293,6 +293,24 @@
     margin: 0;
   }
 
+  .hero-link { color: var(--teal); text-decoration: none; }
+  .hero-link:hover { text-decoration: underline; }
+
+  /* ---- wicky ---- */
+  .pro-badge {
+    display: inline-block;
+    margin-left: 6px;
+    padding: 1px 7px;
+    border: 1px solid var(--teal-dim);
+    border-radius: 999px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10.5px;
+    font-weight: 500;
+    color: var(--teal);
+    vertical-align: 2px;
+  }
+  .section-ctas { margin-top: 28px; }
+
   /* ---- second shot ---- */
   .shot-row {
     display: grid;
@@ -570,12 +588,12 @@
     <picture><source srcset="../../assets/img/wickd-mark-light.svg" media="(prefers-color-scheme: light)"><img src="../../assets/img/wickd-mark.svg" class="hero-icon" alt="wickd logo: a data graph shaped like a flame"></picture>
     <p class="eyebrow">The desktop app for dbt</p>
     <h1>The dbt workbench that never leaves your machine.</h1>
-    <p>An interactive dependency graph, live run/build/test with streaming logs, an in-browser SQL editor, and full Git support — running against your dbt-core projects with no cloud account and no data leaving your laptop.</p>
+    <p>An interactive dependency graph, live run/build/test with streaming logs, an in-browser SQL editor, and full Git support — running against your dbt-core projects with no cloud account and no data leaving your laptop. With Pro, <a class="hero-link" href="#wicky">Wicky</a>, an AI assistant that runs on your machine, answers questions about your models and your data.</p>
     <div class="hero-ctas">
       <a class="btn btn-primary" href="https://github.com/EricLamphere/wickd/releases/latest/download/wickd_aarch64.dmg">Download for macOS</a>
-      <a class="btn btn-secondary" href="#features">See what's inside</a>
+      <a class="btn btn-secondary" href="#wicky">Meet Wicky</a>
     </div>
-    <p class="platform-note">Free and open-source core · Optional Pro upgrade · macOS on Apple Silicon · Notarized by Apple</p>
+    <p class="platform-note">Free and open-source core · Pro adds Wicky, a local AI assistant · macOS on Apple Silicon · Notarized by Apple</p>
 
     <div class="shot">
       <img src="../../assets/img/main_pro_2560.png" alt="wickd DAG with column-level impact analysis and Wicky, the local AI assistant, answering questions from warehouse queries">
@@ -626,14 +644,58 @@
       </div>
       <div class="feature">
         <span class="num">08</span>
-        <h3>Wicky, the local AI assistant (Pro)</h3>
-        <p>Ask about your models and your data, explain failing runs and tests, and generate docs and data tests you review before saving — on a model that runs on your machine.</p>
+        <h3>Wicky, the local AI assistant <span class="pro-badge">Pro</span></h3>
+        <p>Ask about your models and your data, explain failing runs and tests, and generate docs and data tests you review before saving — on a model that runs on your machine. <a class="hero-link" href="#wicky">Meet Wicky →</a></p>
       </div>
       <div class="feature">
         <span class="num">09</span>
         <h3>Command palette</h3>
         <p>Hit ⌘K to jump to any page or model, or run any dbt command — with your recent commands a keystroke away.</p>
       </div>
+    </div>
+  </section>
+
+  <section id="wicky">
+    <div class="section-head">
+      <p class="eyebrow">wickd Pro · Meet Wicky</p>
+      <h2>An AI assistant that knows your dbt project, and keeps it on your laptop.</h2>
+      <p>Wicky lives in a panel beside every page. It sees the model you're looking at, its lineage, its columns and its last run. It runs on a model that downloads to your machine, so your SQL, your schema and your data never go to a cloud API. No API key, no per-token bill.</p>
+    </div>
+    <div class="feature-grid">
+      <div class="feature">
+        <span class="num">Ask</span>
+        <h3>Ask about your project</h3>
+        <p>"What feeds this model?" "Why is this incremental?" Wicky answers from your manifest, compiled SQL and lineage, not from guesses.</p>
+      </div>
+      <div class="feature">
+        <span class="num">Query</span>
+        <h3>Ask about your data</h3>
+        <p>Ask a question in plain English and Wicky writes the SQL. You see and edit the query, run it read-only against your warehouse, and get an answer from the actual results.</p>
+      </div>
+      <div class="feature">
+        <span class="num">Explain</span>
+        <h3>Explain a failure</h3>
+        <p>When a model or its tests fail, one click sends Wicky the error, the SQL and a sample of the failing rows, and it tells you what went wrong and where to look.</p>
+      </div>
+      <div class="feature">
+        <span class="num">Document</span>
+        <h3>Write your docs</h3>
+        <p>Wicky drafts model and column descriptions from the SQL and the warehouse. You review the change as a diff and accept or reject each item before anything is saved.</p>
+      </div>
+      <div class="feature">
+        <span class="num">Test</span>
+        <h3>Suggest data tests</h3>
+        <p>Wicky samples the data and proposes generic tests like not_null, unique and accepted_values. Wicky checks every suggestion against the warehouse first, so the review shows which tests already pass.</p>
+      </div>
+      <div class="feature">
+        <span class="num">Private</span>
+        <h3>Private by design</h3>
+        <p>The bundled model runs on your Mac. Prefer your own? Point Wicky at any OpenAI-compatible endpoint, such as a local Ollama server.</p>
+      </div>
+    </div>
+    <div class="hero-ctas section-ctas">
+      <a class="btn btn-primary" href="https://buy.polar.sh/polar_cl_KWvxkHPFizaGyCqpQ5LcrFVEh3zHe9c42aWXO0mSwnJ" target="_blank" rel="noreferrer">Get Pro, $4.99 / month</a>
+      <a class="btn btn-secondary" href="#pricing">Compare plans</a>
     </div>
   </section>
 
@@ -689,8 +751,8 @@
   <section id="pricing">
     <div class="section-head">
       <p class="eyebrow">Pricing</p>
-      <h2>Free for the whole workflow. Pro for the extras.</h2>
-      <p>wickd's core is free and open-source, permanently. Pro is an optional subscription that unlocks advanced features — column-level lineage, column-level impact analysis and Wicky, a local AI assistant, with more on the way — and helps fund continued development.</p>
+      <h2>Free for the whole workflow. Pro adds Wicky.</h2>
+      <p>wickd's core is free and open-source, permanently. Pro is an optional subscription that adds Wicky, a local AI assistant, plus column-level lineage and column-level impact analysis, with more on the way. It also helps fund continued development.</p>
     </div>
     <div class="plans">
       <div class="plan">
@@ -717,10 +779,9 @@
         <div class="plan-price">$4.99 <small>/ month</small></div>
         <ul>
           <li>Everything in Base</li>
-          <li>Column-level lineage tracing across the DAG</li>
+          <li><span><strong>Wicky, the local AI assistant</strong> — ask questions about your models and your data, explain failing runs and tests, and generate docs and data tests you review before saving, on a model that runs on your machine. No API key, nothing sent to the cloud. <a class="hero-link" href="#wicky">More about Wicky</a></span></li>
+          <li>Column-level lineage tracing across the DAG, derived from compiled SQL — no yml docs required</li>
           <li>Column-level impact analysis — only the columns, models &amp; tests a change reaches, including through filters and joins</li>
-          <li>Wicky, the local AI assistant — ask questions about your models and your data, explain failing runs and tests, and generate docs and data tests you review before saving, on a model that runs on your machine</li>
-          <li>Derived from compiled SQL — no yml docs required</li>
           <li>New Pro features as they ship</li>
           <li>Priority support</li>
         </ul>
@@ -750,7 +811,7 @@
       </div>
       <div class="step">
         <span class="step-n mono">+</span>
-        <span class="step-text"><strong>Optional: activate Pro.</strong> <a href="https://buy.polar.sh/polar_cl_KWvxkHPFizaGyCqpQ5LcrFVEh3zHe9c42aWXO0mSwnJ" target="_blank" rel="noreferrer">Subscribe</a> here or from <strong>Upgrade to Pro</strong> in the app's header. Polar emails you a license key — paste it into <strong>Settings → Subscription</strong> and Pro features unlock right away. Lost your key or need to free up a device? Sign in to the <a href="https://polar.sh/lamphere-labs/portal" target="_blank" rel="noreferrer">customer portal</a> with your purchase email.</span>
+        <span class="step-text"><strong>Optional: activate Pro.</strong> <a href="https://buy.polar.sh/polar_cl_KWvxkHPFizaGyCqpQ5LcrFVEh3zHe9c42aWXO0mSwnJ" target="_blank" rel="noreferrer">Subscribe</a> here or from <strong>Upgrade to Pro</strong> in the app's header. Polar emails you a license key — paste it into <strong>Settings → Subscription</strong> and Pro features unlock right away. The first time you open Wicky (⌘I), it downloads its model (about 2.7 GB), or you can point it at your own endpoint instead. Lost your key or need to free up a device? Sign in to the <a href="https://polar.sh/lamphere-labs/portal" target="_blank" rel="noreferrer">customer portal</a> with your purchase email.</span>
       </div>
     </div>
   </section>
