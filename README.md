@@ -6,7 +6,7 @@ Static site for [lampherelabs.com](https://lampherelabs.com), hosted on Cloudfla
 
 ```
 index.html              Homepage
-tools/wickd/            Wickd product page (lampherelabs.com/tools/wickd)
+tools/wickd/            wickd product page (lampherelabs.com/tools/wickd)
 assets/img/             Images used across pages
 _redirects              Cloudflare Pages redirects (old dbt-ui URLs → /tools/wickd)
 ```

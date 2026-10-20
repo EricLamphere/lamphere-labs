@@ -1,4 +1,4 @@
-# Cloudflare Pages redirects. The product was renamed from dbt-ui to Wickd;
+# Cloudflare Pages redirects. The product was renamed from dbt-ui to wickd;
 # its page moved /product-dbt-ui → /tools/dbt-ui → /tools/wickd.
 /product-dbt-ui            /tools/wickd/          301
 /product-dbt-ui/*          /tools/wickd/:splat    301
