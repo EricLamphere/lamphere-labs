@@ -593,7 +593,7 @@
       <a class="btn btn-primary" href="https://github.com/EricLamphere/wickd/releases/latest/download/wickd_aarch64.dmg">Download for macOS</a>
       <a class="btn btn-secondary" href="#wicky">Meet Wicky</a>
     </div>
-    <p class="platform-note">Free and open-source core · Pro adds Wicky, a local AI assistant · macOS on Apple Silicon · Notarized by Apple</p>
+    <p class="platform-note">Free and open-source core · Pro adds Wicky, a local AI assistant · macOS on Apple Silicon · Notarized by Apple<span id="download-count" hidden></span></p>
 
     <div class="shot">
       <img src="../../assets/img/main_pro_2560.png" alt="wickd DAG with column-level impact analysis and Wicky, the local AI assistant, answering questions from warehouse queries">
@@ -883,5 +883,29 @@
       if (e.key === 'ArrowLeft') show(currentIndex - 1);
       if (e.key === 'ArrowRight') show(currentIndex + 1);
     });
+  })();
+</script>
+<script>
+  // Total downloads across all GitHub releases; stays hidden if the API call fails.
+  (function () {
+    var el = document.getElementById('download-count');
+    if (!el || !window.fetch) return;
+    fetch('https://api.github.com/repos/EricLamphere/wickd/releases?per_page=100')
+      .then(function (res) {
+        if (!res.ok) throw new Error('GitHub API ' + res.status);
+        return res.json();
+      })
+      .then(function (releases) {
+        var total = 0;
+        releases.forEach(function (release) {
+          (release.assets || []).forEach(function (asset) {
+            if (/\.dmg$/.test(asset.name)) total += asset.download_count || 0;
+          });
+        });
+        if (total <= 0) return;
+        el.textContent = ' · ' + total.toLocaleString('en-US') + ' download' + (total === 1 ? '' : 's');
+        el.hidden = false;
+      })
+      .catch(function () { /* leave the count hidden */ });
   })();
 </script>
