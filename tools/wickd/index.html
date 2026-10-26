@@ -625,7 +625,7 @@
       <div class="feature">
         <span class="num">04</span>
         <h3>File explorer &amp; editor</h3>
-        <p>Browse your project tree and edit model SQL, YAML, and config in-browser, with ref/source autocomplete and cmd+click navigation.</p>
+        <p>Browse your project tree and edit model SQL, YAML, and config in-browser, with ref/source autocomplete and cmd+click navigation. The tree works like VS Code&rsquo;s: drag and drop (even from Finder), multi-select, cut/copy/paste, and inline rename.</p>
       </div>
       <div class="feature">
         <span class="num">05</span>
@@ -761,7 +761,7 @@
     <div class="section-head">
       <p class="eyebrow">Pricing</p>
       <h2>Free for the whole workflow. Pro adds Wicky.</h2>
-      <p>wickd's core is free and open-source, permanently. Pro is an optional subscription that adds Wicky, a local AI assistant, plus column-level lineage and column-level impact analysis, with more on the way. It also helps fund continued development.</p>
+      <p>wickd's core is free and open-source, permanently. Pro is an optional subscription that adds Wicky, a local AI assistant, plus column-level lineage, column-level impact analysis and run performance insights, with more on the way. It also helps fund continued development.</p>
     </div>
     <div class="plans">
       <div class="plan">
@@ -777,7 +777,7 @@
           <li>Data preview — any model's output, plus the failing rows behind a failed test</li>
           <li>Column profiling &amp; test coverage heatmap</li>
           <li>Model impact analysis — see what a selection, your uncommitted changes, or your branch affects downstream</li>
-          <li>Run history</li>
+          <li>Run history — every invocation, with a timeline of what each dbt thread was doing and a DAG overlay of each model's median run time</li>
           <li>Live sync — dbt runs and git changes made outside the app show up without a reload</li>
           <li>Command palette (⌘K) — jump to any page or model, or run any dbt command</li>
           <li>Search across projects — find a model, source or column in any project and jump straight to it</li>
@@ -793,6 +793,7 @@
           <li><span><strong>Wicky, the local AI assistant</strong> — ask questions about your models and your data, explain failing runs and tests, and generate docs and data tests you review before saving, on a model that runs on your machine. No API key, nothing sent to the cloud. <a class="hero-link" href="#wicky">More about Wicky</a></span></li>
           <li>Column-level lineage tracing across the DAG, derived from compiled SQL — no yml docs required, and included in interactive DAG exports</li>
           <li>Column-level impact analysis — only the columns, models &amp; tests a change reaches, including through filters and joins</li>
+          <li>Run performance insights — each run's critical path, models that got slower than usual, and recommendations like making a model incremental or raising threads</li>
           <li>New Pro features as they ship</li>
           <li>Priority support</li>
         </ul>
