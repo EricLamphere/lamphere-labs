@@ -761,7 +761,7 @@
     <div class="section-head">
       <p class="eyebrow">Pricing</p>
       <h2>Free for the whole workflow. Pro adds Wicky.</h2>
-      <p>wickd's core is free and open-source, permanently. Pro is an optional subscription that adds Wicky, a local AI assistant, plus column-level lineage, column-level impact analysis and run performance insights, with more on the way. It also helps fund continued development.</p>
+      <p>wickd's core is free and open-source, permanently. Pro is an optional subscription that adds Wicky, a local AI assistant, plus column-level lineage, column-level impact analysis, lineage propagation and run performance insights, with more on the way. It also helps fund continued development.</p>
     </div>
     <div class="plans">
       <div class="plan">
@@ -793,6 +793,7 @@
           <li><span><strong>Wicky, the local AI assistant</strong> — ask questions about your models and your data, explain failing runs and tests, and generate docs and data tests you review before saving, on a model that runs on your machine. No API key, nothing sent to the cloud. <a class="hero-link" href="#wicky">More about Wicky</a></span></li>
           <li>Column-level lineage tracing across the DAG, derived from compiled SQL — no yml docs required, and included in interactive DAG exports</li>
           <li>Column-level impact analysis — only the columns, models &amp; tests a change reaches, including through filters and joins</li>
+          <li>Lineage propagation — fill empty column descriptions from the upstream columns they pass through, and trace tagged columns like <code>pii</code> to every model, column and exposure they reach</li>
           <li>Run performance insights — each run's critical path, models that got slower than usual, and recommendations like making a model incremental or raising threads</li>
           <li>New Pro features as they ship</li>
           <li>Priority support</li>
