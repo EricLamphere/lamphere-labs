@@ -761,7 +761,7 @@
     <div class="section-head">
       <p class="eyebrow">Pricing</p>
       <h2>Free for the whole workflow. Pro adds Wicky.</h2>
-      <p>wickd's core is free and open-source, permanently. Pro is an optional subscription that adds Wicky, a local AI assistant, plus column-level lineage, column-level impact analysis, lineage propagation and run performance insights, with more on the way. It also helps fund continued development.</p>
+      <p>wickd's core is free and open-source, permanently. Pro is an optional subscription that adds Wicky, a local AI assistant, plus column-level lineage, column-level impact analysis, lineage propagation, run performance insights and refactors, with more on the way. It also helps fund continued development.</p>
     </div>
     <div class="plans">
       <div class="plan">
@@ -773,7 +773,7 @@
           <li>Git source control</li>
           <li>Native docs browser</li>
           <li>Health check, schema drift &amp; source freshness</li>
-          <li>Documentation generator — add a model and its warehouse columns to schema YAML in one click</li>
+          <li>Documentation generator — add a model and its warehouse columns to schema YAML, reviewed as a diff before it's written</li>
           <li>Data preview — any model's output, plus the failing rows behind a failed test</li>
           <li>Column profiling &amp; test coverage heatmap</li>
           <li>Model impact analysis — see what a selection, your uncommitted changes, or your branch affects downstream</li>
@@ -795,6 +795,7 @@
           <li>Column-level impact analysis — only the columns, models &amp; tests a change reaches, including through filters and joins</li>
           <li>Lineage propagation — fill empty column descriptions from the upstream columns they pass through, and trace tagged columns like <code>pii</code> to every model, column and exposure they reach</li>
           <li>Run performance insights — each run's critical path, models that got slower than usual, and recommendations like making a model incremental or raising threads</li>
+          <li>Refactors — rename a model or a column everywhere it's used, or extract a CTE into its own model, reviewed as one diff before anything is written, with <code>dbt parse</code> afterwards and one-click undo</li>
           <li>New Pro features as they ship</li>
           <li>Priority support</li>
         </ul>
