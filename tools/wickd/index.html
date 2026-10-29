@@ -785,6 +785,7 @@
           <li>Model impact analysis — see what a selection, your uncommitted changes, or your branch affects downstream</li>
           <li>Semantic layer (MetricFlow) — metrics, semantic models &amp; saved queries in the DAG, docs and impact analysis, with MetricFlow validations in Health</li>
           <li>Metric explorer — query metrics by dimension, grain, filters and dates, see MetricFlow's SQL live, run it and chart the result, and save it as a dbt saved query</li>
+          <li>Metric dashboards — a drag-and-drop builder: drop metrics onto a canvas, pick widgets (summary, time series, bars, top N, table, text), compare the current period with the previous one and drill into any value; refresh in one warehouse run, export to HTML or PNG; saved as YAML in your project and registrable as dbt exposures</li>
           <li>Run history — every invocation, with a timeline of what each dbt thread was doing and a DAG overlay of each model's median run time</li>
           <li>Live sync — dbt runs and git changes made outside the app show up without a reload</li>
           <li>Command palette (⌘K) — jump to any page or model, or run any dbt command</li>
@@ -806,7 +807,7 @@
           <li>Refactors — rename a model or a column everywhere it's used, or extract a CTE into its own model, reviewed as one diff before anything is written, with <code>dbt parse</code> afterwards and one-click undo</li>
           <li>Smarter test suggestions — <code>relationships</code> and <code>not_null</code> on the columns other models join on, <code>unique</code> on each model's grain, ranked by how much depends on them with the evidence for each; Health → Test Gaps adds them across many models at once, no AI model needed</li>
           <li>Semantic layer drafts — “Add to semantic layer” on any model: Wicky drafts the semantic model and starting metrics, checks them with MetricFlow and runs each one before you review the YAML; Query data answers with your defined metrics when they cover the question</li>
-          <li>Metric monitors — watch metrics for spikes, drops, level shifts, missing periods and restated history against a seasonal baseline; checked after builds that touch them, with status on the Health page, DAG and Impact</li>
+          <li>Metric monitors — watch metrics for spikes, drops, level shifts, missing periods and restated history against a seasonal baseline; checked after builds that touch them, with status on the Health page, DAG, Impact and dashboard tiles</li>
           <li>New Pro features as they ship</li>
           <li>Priority support</li>
         </ul>
