@@ -767,7 +767,7 @@
     <div class="section-head">
       <p class="eyebrow">Pricing</p>
       <h2>Free for the whole workflow. Pro adds Wicky.</h2>
-      <p>wickd's core is free and open-source, permanently. Pro is an optional subscription that adds Wicky, a local AI assistant, plus column-level lineage, column-level impact analysis, lineage propagation, run performance insights, refactors, smarter test suggestions, semantic layer drafts and metric monitors, with more on the way. It also helps fund continued development.</p>
+      <p>wickd's core is free and open-source, permanently. Pro is an optional subscription that adds Wicky, a local AI assistant, plus column-level lineage, column-level impact analysis, lineage propagation, run performance insights, refactors, smarter test suggestions, semantic layer drafts, metric monitors and metric compare, with more on the way. It also helps fund continued development.</p>
     </div>
     <div class="plans">
       <div class="plan">
@@ -784,7 +784,7 @@
           <li>Column profiling &amp; test coverage heatmap</li>
           <li>Model impact analysis — see what a selection, your uncommitted changes, or your branch affects downstream</li>
           <li>Semantic layer (MetricFlow) — metrics, semantic models &amp; saved queries in the DAG, docs and impact analysis, with MetricFlow validations in Health</li>
-          <li>Metric explorer — query metrics by dimension, grain, filters and dates, see MetricFlow's SQL live, run it and chart the result, and save it as a dbt saved query</li>
+          <li>Metric explorer — a page per metric (chart, definition, lineage, usage and health) and an index of every metric, plus queries by dimension, grain, filters and dates with MetricFlow's SQL live, charted and saved as dbt saved queries</li>
           <li>Metric dashboards — a drag-and-drop builder: drop metrics onto a canvas, pick widgets (summary, time series, bars, top N, table, text), compare the current period with the previous one and drill into any value; refresh in one warehouse run, export to HTML or PNG; saved as YAML in your project and registrable as dbt exposures</li>
           <li>Run history — every invocation, with a timeline of what each dbt thread was doing and a DAG overlay of each model's median run time</li>
           <li>Live sync — dbt runs and git changes made outside the app show up without a reload</li>
@@ -808,6 +808,7 @@
           <li>Smarter test suggestions — <code>relationships</code> and <code>not_null</code> on the columns other models join on, <code>unique</code> on each model's grain, ranked by how much depends on them with the evidence for each; Health → Test Gaps adds them across many models at once, no AI model needed</li>
           <li>Semantic layer drafts — “Add to semantic layer” on any model: Wicky drafts the semantic model and starting metrics, checks them with MetricFlow and runs each one before you review the YAML; Query data answers with your defined metrics when they cover the question</li>
           <li>Metric monitors — watch metrics for spikes, drops, level shifts, missing periods and restated history against a seasonal baseline; checked after builds that touch them, with status on the Health page, DAG, Impact and dashboard tiles</li>
+          <li>Metric compare — see what your changes do to a metric's numbers before you merge: uncommitted changes vs HEAD, your branch vs its base, dev vs prod or two metrics, with the rows that moved and the SQL diff</li>
           <li>New Pro features as they ship</li>
           <li>Priority support</li>
         </ul>
