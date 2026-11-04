@@ -238,7 +238,7 @@
     left: 50%;
     transform: translateX(-50%);
   }
-  .shot img { width: 100%; }
+  .shot img { width: 100%; height: auto; }
 
   /* ---- section shared ---- */
   section { padding-block: 56px; border-top: 1px solid var(--line); }
@@ -458,7 +458,109 @@
     gap: 18px;
   }
 
+  /* ---- gallery preview (same tiles and lightbox as gallery/index.html) ---- */
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+  }
+  .gallery-item {
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    overflow: hidden;
+    background: var(--panel);
+    cursor: zoom-in;
+    display: flex;
+    flex-direction: column;
+    transition: border-color 0.15s ease;
+  }
+  .gallery-item:hover { border-color: var(--teal-dim); }
+  /* every screenshot is this shape; reserving it stops the page jumping as lazy images load */
+  .gallery-item img { width: 100%; height: auto; aspect-ratio: 1200 / 742; display: block; }
+  .gallery-cap {
+    padding: 10px 12px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: var(--ink-dim);
+    border-top: 1px solid var(--line-soft);
+  }
+
+  .lightbox {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(6, 7, 8, 0.86);
+    z-index: 50;
+    align-items: center;
+    justify-content: center;
+    padding: 72px 84px;
+    cursor: zoom-out;
+  }
+  .lightbox.open { display: flex; }
+  .lightbox img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    border-radius: 10px;
+    border: 1px solid var(--line);
+    box-shadow: 0 40px 80px -30px rgba(0, 0, 0, 0.7);
+  }
+  .lightbox-close {
+    position: absolute;
+    top: 22px;
+    right: 26px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    color: var(--ink-dim);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: 6px 12px;
+    background: var(--panel);
+  }
+  .lightbox-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 20px;
+    color: var(--ink-dim);
+    border: 1px solid var(--line);
+    border-radius: 50%;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--panel);
+    cursor: pointer;
+    transition: color 0.15s ease, border-color 0.15s ease;
+  }
+  .lightbox-nav:hover { color: var(--teal); border-color: var(--teal-dim); }
+  .lightbox-prev { left: 26px; }
+  .lightbox-next { right: 26px; }
+  .lightbox-cap {
+    position: absolute;
+    bottom: 28px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12.5px;
+    color: var(--ink-dim);
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: 8px 16px;
+    max-width: 80vw;
+    text-align: center;
+  }
+
   @media (max-width: 760px) {
+    .gallery-grid { grid-template-columns: 1fr; }
+    .header-ctas { gap: 8px; }
+    .lightbox { padding: 64px 12px; }
+    .lightbox-nav { width: 38px; height: 38px; font-size: 17px; }
+    .lightbox-prev { left: 10px; }
+    .lightbox-next { right: 10px; }
     .feature-grid { grid-template-columns: 1fr; }
     .plans { grid-template-columns: 1fr; }
     .header-ctas { gap: 8px; }
@@ -497,7 +599,7 @@
     <p class="platform-note">Free and open-source core · Pro adds Wicky, a local AI assistant · macOS on Apple Silicon · Notarized by Apple<span id="download-count" hidden></span></p>
 
     <div class="shot">
-      <img src="../../assets/img/main_pro_2560.png" alt="wickd DAG with models expanded to their columns and customer_id&#x27;s lineage highlighted from the raw_customers source through to mart_customer_360, with column-level impact below and Wicky, the local AI assistant, answering a question from a warehouse query">
+      <img src="../../assets/img/main_pro_2560.png" alt="wickd DAG with models expanded to their columns and customer_id&#x27;s lineage highlighted from the raw_customers source through to mart_customer_360, with column-level impact below and Wicky, the local AI assistant, answering a question from a warehouse query" width="2560" height="1583" fetchpriority="high">
     </div>
   </section>
 
@@ -612,7 +714,7 @@
       <p>The side panel surfaces dependencies, materialization, test coverage, and run controls without a page navigation — and the same Monaco editor VS Code uses is right there for edits.</p>
     </div>
     <div class="shot">
-      <img src="../../assets/img/main_base_2560.png" alt="wickd file explorer with SQL editor, model properties panel, and the selected model&#x27;s node DAG">
+      <img src="../../assets/img/main_base_2560.png" alt="wickd file explorer with SQL editor, model properties panel, and the selected model&#x27;s node DAG" width="2560" height="1583" loading="lazy">
     </div>
   </section>
 
@@ -622,7 +724,29 @@
       <h2>Every page, right inside the app.</h2>
       <p>From metric dashboards to schema drift checks — a tour of what's actually in the window when you're using wickd.</p>
     </div>
-    <a class="btn btn-secondary" href="gallery/">View the gallery →</a>
+    <!-- screenshots:preview:start -->
+    <div class="gallery-grid">
+      <div class="gallery-item" data-full="../../assets/img/metric_dashboard_2400.png" data-cap="Metric dashboards — a drag-and-drop builder over YAML files in your project">
+        <img src="../../assets/img/metric_dashboard_1200.png" loading="lazy" alt="wickd dashboard builder with metrics on the left, widgets on the right and charts on the canvas">
+        <div class="gallery-cap">Metric dashboards</div>
+      </div>
+      <div class="gallery-item" data-full="../../assets/img/metric_debug_2400.png" data-cap="Metric debugging — MetricFlow&#x27;s plan step by step and warehouse checks, with the number explained (Pro)">
+        <img src="../../assets/img/metric_debug_1200.png" loading="lazy" alt="wickd metric debugging: a written explanation, MetricFlow&#x27;s plan step by step, and quality checks">
+        <div class="gallery-cap">Metric debugging (Pro)</div>
+      </div>
+      <div class="gallery-item" data-full="../../assets/img/metric_monitors_2400.png" data-cap="Metric monitors (Pro) — anomalies against a seasonal baseline, with the expected band">
+        <img src="../../assets/img/metric_monitors_1200.png" loading="lazy" alt="wickd metric monitor chart with its expected band and flagged periods">
+        <div class="gallery-cap">Metric monitors (Pro)</div>
+      </div>
+      <div class="gallery-item" data-full="../../assets/img/data_diff_2400.png" data-cap="Data diff (Pro) — your changed model built in dev and compared with prod, row by row">
+        <img src="../../assets/img/data_diff_1200.png" loading="lazy" alt="wickd data diff comparing a changed model in dev with prod, showing changed columns and sample rows">
+        <div class="gallery-cap">Data diff (Pro)</div>
+      </div>
+    </div>
+    <!-- screenshots:preview:end -->
+    <div class="hero-ctas section-ctas">
+      <a class="btn btn-secondary" href="gallery/">View the full gallery →</a>
+    </div>
   </section>
 
   <section id="pricing">
@@ -722,6 +846,59 @@
   </footer>
 </div>
 
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" id="lightbox-close">Close ✕</button>
+  <button class="lightbox-nav lightbox-prev" id="lightbox-prev" aria-label="Previous image">‹</button>
+  <img id="lightbox-img" src="" alt="">
+  <button class="lightbox-nav lightbox-next" id="lightbox-next" aria-label="Next image">›</button>
+  <div class="lightbox-cap" id="lightbox-cap"></div>
+</div>
+
+<script>
+  (function () {
+    var lightbox = document.getElementById('lightbox');
+    var lightboxImg = document.getElementById('lightbox-img');
+    var lightboxCap = document.getElementById('lightbox-cap');
+    var closeBtn = document.getElementById('lightbox-close');
+    var prevBtn = document.getElementById('lightbox-prev');
+    var nextBtn = document.getElementById('lightbox-next');
+    var items = Array.prototype.slice.call(document.querySelectorAll('.gallery-item'));
+    var currentIndex = -1;
+
+    function show(index) {
+      currentIndex = (index + items.length) % items.length;
+      var item = items[currentIndex];
+      lightboxImg.src = item.getAttribute('data-full');
+      var cap = item.getAttribute('data-cap') || '';
+      lightboxImg.alt = cap;
+      lightboxCap.textContent = cap;
+      lightbox.classList.add('open');
+    }
+
+    items.forEach(function (item, index) {
+      item.addEventListener('click', function () { show(index); });
+    });
+
+    function close() {
+      lightbox.classList.remove('open');
+      lightboxImg.src = '';
+      currentIndex = -1;
+    }
+
+    closeBtn.addEventListener('click', close);
+    prevBtn.addEventListener('click', function (e) { e.stopPropagation(); show(currentIndex - 1); });
+    nextBtn.addEventListener('click', function (e) { e.stopPropagation(); show(currentIndex + 1); });
+    lightbox.addEventListener('click', function (e) {
+      if (e.target === lightbox) close();
+    });
+    document.addEventListener('keydown', function (e) {
+      if (!lightbox.classList.contains('open')) return;
+      if (e.key === 'Escape') close();
+      if (e.key === 'ArrowLeft') show(currentIndex - 1);
+      if (e.key === 'ArrowRight') show(currentIndex + 1);
+    });
+  })();
+</script>
 <script>
   // Total downloads across all GitHub releases; stays hidden if the API call fails.
   (function () {

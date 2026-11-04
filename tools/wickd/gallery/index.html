@@ -175,7 +175,8 @@
     transition: border-color 0.15s ease;
   }
   .gallery-item:hover { border-color: var(--teal-dim); }
-  .gallery-item img { width: 100%; display: block; }
+  /* every screenshot is this shape; reserving it stops the page jumping as lazy images load */
+  .gallery-item img { width: 100%; height: auto; aspect-ratio: 1200 / 742; display: block; }
   .gallery-cap {
     padding: 10px 12px;
     font-family: 'IBM Plex Mono', monospace;
@@ -319,29 +320,37 @@
   <section id="gallery">
     <!-- screenshots:gallery:start -->
     <div class="gallery-grid">
+      <div class="gallery-item" data-full="../../../assets/img/main_pro_2560.png" data-cap="Column-level lineage traced from raw data through every model, with its impact below and Wicky (Pro) answering from warehouse queries">
+        <img src="../../../assets/img/main_pro_1200.png" loading="lazy" alt="wickd DAG with models expanded to their columns and customer_id&#x27;s lineage highlighted from the raw_customers source through to mart_customer_360, with column-level impact below and Wicky, the local AI assistant, answering a question from a warehouse query">
+        <div class="gallery-cap">Column lineage, impact and Wicky (Pro)</div>
+      </div>
+      <div class="gallery-item" data-full="../../../assets/img/main_base_2560.png" data-cap="Editing, not just browsing — the file tree, the SQL editor, the model&#x27;s properties and run controls, and its lineage below">
+        <img src="../../../assets/img/main_base_1200.png" loading="lazy" alt="wickd file explorer with SQL editor, model properties panel, and the selected model&#x27;s node DAG">
+        <div class="gallery-cap">Files and data preview</div>
+      </div>
       <div class="gallery-item" data-full="../../../assets/img/metric_dashboard_2400.png" data-cap="Metric dashboards — a drag-and-drop builder over YAML files in your project">
         <img src="../../../assets/img/metric_dashboard_1200.png" loading="lazy" alt="wickd dashboard builder with metrics on the left, widgets on the right and charts on the canvas">
         <div class="gallery-cap">Metric dashboards</div>
-      </div>
-      <div class="gallery-item" data-full="../../../assets/img/metric_explorer_2400.png" data-cap="Metric explorer — build a query in one line, with the chart, the rows and the SQL MetricFlow writes">
-        <img src="../../../assets/img/metric_explorer_1200.png" loading="lazy" alt="wickd metric explorer with revenue by country, its settings, and the SQL MetricFlow generated">
-        <div class="gallery-cap">Metric explorer</div>
-      </div>
-      <div class="gallery-item" data-full="../../../assets/img/metric_monitors_2400.png" data-cap="Metric monitors (Pro) — anomalies against a seasonal baseline, with the expected band">
-        <img src="../../../assets/img/metric_monitors_1200.png" loading="lazy" alt="wickd metric monitor chart with its expected band and flagged periods">
-        <div class="gallery-cap">Metric monitors (Pro)</div>
       </div>
       <div class="gallery-item" data-full="../../../assets/img/metric_debug_2400.png" data-cap="Metric debugging — MetricFlow&#x27;s plan step by step and warehouse checks, with the number explained (Pro)">
         <img src="../../../assets/img/metric_debug_1200.png" loading="lazy" alt="wickd metric debugging: a written explanation, MetricFlow&#x27;s plan step by step, and quality checks">
         <div class="gallery-cap">Metric debugging (Pro)</div>
       </div>
-      <div class="gallery-item" data-full="../../../assets/img/source_control_2400.png" data-cap="Source control with contract checks (Pro) — what your uncommitted work breaks, before you commit">
-        <img src="../../../assets/img/source_control_1200.png" loading="lazy" alt="wickd source control with a diff, and contract check results for the uncommitted change">
-        <div class="gallery-cap">Source control &amp; contracts (Pro)</div>
+      <div class="gallery-item" data-full="../../../assets/img/metric_monitors_2400.png" data-cap="Metric monitors (Pro) — anomalies against a seasonal baseline, with the expected band">
+        <img src="../../../assets/img/metric_monitors_1200.png" loading="lazy" alt="wickd metric monitor chart with its expected band and flagged periods">
+        <div class="gallery-cap">Metric monitors (Pro)</div>
       </div>
       <div class="gallery-item" data-full="../../../assets/img/data_diff_2400.png" data-cap="Data diff (Pro) — your changed model built in dev and compared with prod, row by row">
         <img src="../../../assets/img/data_diff_1200.png" loading="lazy" alt="wickd data diff comparing a changed model in dev with prod, showing changed columns and sample rows">
         <div class="gallery-cap">Data diff (Pro)</div>
+      </div>
+      <div class="gallery-item" data-full="../../../assets/img/metric_explorer_2400.png" data-cap="Metric explorer — build a query in one line, with the chart, the rows and the SQL MetricFlow writes">
+        <img src="../../../assets/img/metric_explorer_1200.png" loading="lazy" alt="wickd metric explorer with revenue by country, its settings, and the SQL MetricFlow generated">
+        <div class="gallery-cap">Metric explorer</div>
+      </div>
+      <div class="gallery-item" data-full="../../../assets/img/source_control_2400.png" data-cap="Source control with contract checks (Pro) — what your uncommitted work breaks, before you commit">
+        <img src="../../../assets/img/source_control_1200.png" loading="lazy" alt="wickd source control with a diff, and contract check results for the uncommitted change">
+        <div class="gallery-cap">Source control &amp; contracts (Pro)</div>
       </div>
       <div class="gallery-item" data-full="../../../assets/img/docs_2400.png" data-cap="Native docs browser — columns, descriptions, tests, lineage, all searchable">
         <img src="../../../assets/img/docs_1200.png" loading="lazy" alt="wickd native docs browser showing model detail">
