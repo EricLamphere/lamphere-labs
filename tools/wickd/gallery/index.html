@@ -1,0 +1,495 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gallery — wickd, the desktop app for dbt · Lamphere Labs</title>
+<link rel="icon" type="image/svg+xml" href="../../../assets/img/wickd-mark-auto.svg">
+<link rel="apple-touch-icon" href="../../../assets/img/wickd-apple-touch-icon.png">
+<meta name="description" content="Screenshots of wickd, a local-first desktop app for dbt-core: metric dashboards, the interactive DAG, the SQL workspace, run history, data diffs and more.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ground: #0c0e0f;
+    --panel: #14171a;
+    --line: #262b2f;
+    --line-soft: #1e2225;
+    --ink: #ecebe6;
+    --ink-dim: #9a9d9e;
+    --ink-faint: #62666a;
+    --teal: #4cc9b8;
+    --teal-dim: #2b6960;
+    --teal-glow: rgba(76, 201, 184, 0.14);
+    --amber: #e2a542;
+  }
+
+  @media (prefers-color-scheme: light) {
+    :root:not([data-theme="dark"]) {
+      --ground: #f6f5f1;
+      --panel: #ffffff;
+      --line: #ddd8ce;
+      --line-soft: #e7e3da;
+      --ink: #1c1b18;
+      --ink-dim: #5b5852;
+      --ink-faint: #918d84;
+      --teal: #0f766e;
+      --teal-dim: #5eab9f;
+      --teal-glow: rgba(15, 118, 110, 0.08);
+      --amber: #a96c0f;
+    }
+  }
+  :root[data-theme="light"] {
+    --ground: #f6f5f1;
+    --panel: #ffffff;
+    --line: #ddd8ce;
+    --line-soft: #e7e3da;
+    --ink: #1c1b18;
+    --ink-dim: #5b5852;
+    --ink-faint: #918d84;
+    --teal: #0f766e;
+    --teal-dim: #5eab9f;
+    --teal-glow: rgba(15, 118, 110, 0.08);
+    --amber: #a96c0f;
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--ground);
+    color: var(--ink);
+    font-family: 'IBM Plex Sans', system-ui, sans-serif;
+    padding-inline: 24px;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; }
+  img { max-width: 100%; display: block; }
+
+  .wrap { max-width: 1040px; margin: 0 auto; }
+
+  /* ---- header ---- */
+  header {
+    /* Equal side columns keep the product mark centered on the page,
+       whatever the widths of the back link and the CTAs. */
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: 16px;
+    padding-block: 22px;
+    border-bottom: 1px solid var(--line);
+  }
+  header .back { justify-self: start; }
+  header .header-ctas { justify-self: end; }
+  .back {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: var(--ink-faint);
+    white-space: nowrap;
+    transition: color 0.15s ease;
+  }
+  .back:hover { color: var(--amber); }
+  .product-mark {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+  }
+  .product-mark img {
+    height: 30px; width: auto;
+    display: block;
+  }
+  .product-mark span {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 18px;
+  }
+  .header-ctas {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .top-cta {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: var(--teal);
+    text-decoration: none;
+    border: 1px solid var(--teal-dim);
+    border-radius: 6px;
+    padding: 7px 13px;
+    transition: background 0.15s ease, border-color 0.15s ease;
+  }
+  .top-cta:hover { background: var(--teal-glow); border-color: var(--teal); }
+  .top-cta-ghost {
+    color: var(--ink-dim);
+    border-color: var(--line);
+  }
+  .top-cta-ghost:hover { background: var(--line-soft); border-color: var(--ink-faint); }
+
+  /* ---- page head ---- */
+  .page-head {
+    padding-block: 54px 40px;
+    text-align: center;
+  }
+  .eyebrow {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--teal);
+    margin: 0 auto 18px;
+  }
+  h1 {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: clamp(32px, 5.6vw, 56px);
+    line-height: 1.08;
+    letter-spacing: -0.01em;
+    margin: 0 auto 20px;
+    text-wrap: balance;
+    max-width: 16ch;
+  }
+  .page-head .intro {
+    font-size: 17.5px;
+    line-height: 1.6;
+    color: var(--ink-dim);
+    max-width: 56ch;
+    margin: 0 auto;
+  }
+
+  /* ---- gallery ---- */
+  #gallery { padding-bottom: 56px; }
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+  }
+  .gallery-item {
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    overflow: hidden;
+    background: var(--panel);
+    cursor: zoom-in;
+    display: flex;
+    flex-direction: column;
+    transition: border-color 0.15s ease;
+  }
+  .gallery-item:hover { border-color: var(--teal-dim); }
+  .gallery-item img { width: 100%; display: block; }
+  .gallery-cap {
+    padding: 10px 12px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: var(--ink-dim);
+    border-top: 1px solid var(--line-soft);
+  }
+
+  .lightbox {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(6, 7, 8, 0.86);
+    z-index: 50;
+    align-items: center;
+    justify-content: center;
+    padding: 72px 84px;
+    cursor: zoom-out;
+  }
+  .lightbox.open { display: flex; }
+  .lightbox img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    border-radius: 10px;
+    border: 1px solid var(--line);
+    box-shadow: 0 40px 80px -30px rgba(0, 0, 0, 0.7);
+  }
+  .lightbox-close {
+    position: absolute;
+    top: 22px;
+    right: 26px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    color: var(--ink-dim);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: 6px 12px;
+    background: var(--panel);
+  }
+  .lightbox-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 20px;
+    color: var(--ink-dim);
+    border: 1px solid var(--line);
+    border-radius: 50%;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--panel);
+    cursor: pointer;
+    transition: color 0.15s ease, border-color 0.15s ease;
+  }
+  .lightbox-nav:hover { color: var(--teal); border-color: var(--teal-dim); }
+  .lightbox-prev { left: 26px; }
+  .lightbox-next { right: 26px; }
+  .lightbox-cap {
+    position: absolute;
+    bottom: 28px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12.5px;
+    color: var(--ink-dim);
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: 8px 16px;
+    max-width: 80vw;
+    text-align: center;
+  }
+
+  /* ---- footer ---- */
+  footer {
+    padding-block: 32px 48px;
+    border-top: 1px solid var(--line);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  footer .footer-text { display: grid; gap: 6px; }
+  footer p.fine { font-size: 11px; max-width: 60ch; }
+  footer p {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: var(--ink-faint);
+    margin: 0;
+  }
+  footer a {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: var(--ink-dim);
+    text-decoration: none;
+  }
+  footer a:hover { color: var(--teal); }
+  footer .links {
+    display: flex;
+    gap: 18px;
+  }
+
+  @media (max-width: 760px) {
+    .gallery-grid { grid-template-columns: 1fr; }
+    .header-ctas { gap: 8px; }
+    .lightbox { padding: 64px 12px; }
+    .lightbox-nav { width: 38px; height: 38px; font-size: 17px; }
+    .lightbox-prev { left: 10px; }
+    .lightbox-next { right: 10px; }
+  }
+  @media (max-width: 560px) {
+    header { grid-template-columns: 1fr auto; row-gap: 14px; }
+    .product-mark { grid-column: 1 / -1; grid-row: 1; justify-self: center; }
+  }
+</style>
+
+<div class="wrap">
+  <header>
+    <a class="back" href="../" aria-label="Back to wickd">← wickd</a>
+    <div class="product-mark">
+      <picture><source srcset="../../../assets/img/wickd-mark-light.svg" media="(prefers-color-scheme: light)"><img src="../../../assets/img/wickd-mark.svg" alt=""></picture>
+      <span>wickd</span>
+    </div>
+    <div class="header-ctas">
+      <a class="top-cta top-cta-ghost" href="https://github.com/EricLamphere/wickd" target="_blank" rel="noreferrer">GitHub ↗</a>
+      <a class="top-cta" href="../#pricing">Get wickd</a>
+    </div>
+  </header>
+
+  <div class="page-head">
+    <p class="eyebrow">Gallery</p>
+    <h1>Every page, right inside the app.</h1>
+    <p class="intro">From metric dashboards to schema drift checks — a tour of what's actually in the window when you're using wickd. Click any screenshot to enlarge it.</p>
+  </div>
+
+  <section id="gallery">
+    <!-- screenshots:gallery:start -->
+    <div class="gallery-grid">
+      <div class="gallery-item" data-full="../../../assets/img/metric_dashboard_2400.png" data-cap="Metric dashboards — a drag-and-drop builder over YAML files in your project">
+        <img src="../../../assets/img/metric_dashboard_1200.png" loading="lazy" alt="wickd dashboard builder with metrics on the left, widgets on the right and charts on the canvas">
+        <div class="gallery-cap">Metric dashboards</div>
+      </div>
+      <div class="gallery-item" data-full="../../../assets/img/metric_explorer_2400.png" data-cap="Metric explorer — build a query in one line, with the chart, the rows and the SQL MetricFlow writes">
+        <img src="../../../assets/img/metric_explorer_1200.png" loading="lazy" alt="wickd metric explorer with revenue by country, its settings, and the SQL MetricFlow generated">
+        <div class="gallery-cap">Metric explorer</div>
+      </div>
+      <div class="gallery-item" data-full="../../../assets/img/metric_monitors_2400.png" data-cap="Metric monitors (Pro) — anomalies against a seasonal baseline, with the expected band">
+        <img src="../../../assets/img/metric_monitors_1200.png" loading="lazy" alt="wickd metric monitor chart with its expected band and flagged periods">
+        <div class="gallery-cap">Metric monitors (Pro)</div>
+      </div>
+      <div class="gallery-item" data-full="../../../assets/img/metric_debug_2400.png" data-cap="Metric debugging — MetricFlow&#x27;s plan step by step and warehouse checks, with the number explained (Pro)">
+        <img src="../../../assets/img/metric_debug_1200.png" loading="lazy" alt="wickd metric debugging: a written explanation, MetricFlow&#x27;s plan step by step, and quality checks">
+        <div class="gallery-cap">Metric debugging (Pro)</div>
+      </div>
+      <div class="gallery-item" data-full="../../../assets/img/source_control_2400.png" data-cap="Source control with contract checks (Pro) — what your uncommitted work breaks, before you commit">
+        <img src="../../../assets/img/source_control_1200.png" loading="lazy" alt="wickd source control with a diff, and contract check results for the uncommitted change">
+        <div class="gallery-cap">Source control &amp; contracts (Pro)</div>
+      </div>
+      <div class="gallery-item" data-full="../../../assets/img/data_diff_2400.png" data-cap="Data diff (Pro) — your changed model built in dev and compared with prod, row by row">
+        <img src="../../../assets/img/data_diff_1200.png" loading="lazy" alt="wickd data diff comparing a changed model in dev with prod, showing changed columns and sample rows">
+        <div class="gallery-cap">Data diff (Pro)</div>
+      </div>
+      <div class="gallery-item" data-full="../../../assets/img/docs_2400.png" data-cap="Native docs browser — columns, descriptions, tests, lineage, all searchable">
+        <img src="../../../assets/img/docs_1200.png" loading="lazy" alt="wickd native docs browser showing model detail">
+        <div class="gallery-cap">Docs browser</div>
+      </div>
+      <div class="gallery-item" data-full="../../../assets/img/sql_workspace_2400.png" data-cap="SQL Workspace — Monaco editor, ref autocomplete, compiled SQL, and live query results">
+        <img src="../../../assets/img/sql_workspace_1200.png" loading="lazy" alt="wickd SQL workspace with a ranking query in the editor and its results beside it">
+        <div class="gallery-cap">SQL Workspace</div>
+      </div>
+      <div class="gallery-item" data-full="../../../assets/img/run_history_2400.png" data-cap="Run history — every invocation, and a timeline of what each dbt thread was doing, with the critical path (Pro) highlighted">
+        <img src="../../../assets/img/run_history_1200.png" loading="lazy" alt="wickd run history with a 4-thread run&#x27;s timeline, showing each model&#x27;s bar per thread and the critical path highlighted">
+        <div class="gallery-cap">Run history</div>
+      </div>
+      <div class="gallery-item" data-full="../../../assets/img/health_2400.png" data-cap="Health — your connection, schema drift, source freshness and semantic layer at a glance, with a terminal below">
+        <img src="../../../assets/img/health_1200.png" loading="lazy" alt="wickd Health overview with connection, drift, freshness and semantic layer cards, and a terminal open below">
+        <div class="gallery-cap">Health &amp; terminal</div>
+      </div>
+      <div class="gallery-item" data-full="../../../assets/img/app_home_2400.png" data-cap="Project discovery, with ⌘K finding models and columns across every project">
+        <img src="../../../assets/img/app_home_1200.png" loading="lazy" alt="wickd homepage with the command palette searching models and columns across projects">
+        <div class="gallery-cap">Homepage &amp; search</div>
+      </div>
+      <div class="gallery-item" data-full="../../../assets/img/combined_docs_2400.png" data-cap="Combined docs across your projects, with Wicky (Pro) answering questions about all of them">
+        <img src="../../../assets/img/combined_docs_1200.png" loading="lazy" alt="wickd combined docs across projects, with Wicky open on the right">
+        <div class="gallery-cap">Combined docs (Pro)</div>
+      </div>
+      <div class="gallery-item" data-full="../../../assets/img/project_home_2400.png" data-cap="Project home — counts, quick runs and recent runs, with any dbt command a keystroke away">
+        <img src="../../../assets/img/project_home_1200.png" loading="lazy" alt="wickd project home page with counts, quick runs, a dbt command box and recent runs">
+        <div class="gallery-cap">Project home</div>
+      </div>
+      <div class="gallery-item" data-full="../../../assets/img/init_pipeline_2400.png" data-cap="Initialization — pip install, dbt deps and your own setup scripts as one pipeline">
+        <img src="../../../assets/img/init_pipeline_1200.png" loading="lazy" alt="wickd Initialization page: setup steps connected by a flowing pipeline">
+        <div class="gallery-cap">Init pipeline</div>
+      </div>
+      <div class="gallery-item" data-full="../../../assets/img/dag_base_2400.png" data-cap="The DAG — selectors, filters and live status, with any model&#x27;s output beside it and its downstream impact with risk flags below">
+        <img src="../../../assets/img/dag_base_1200.png" loading="lazy" alt="wickd DAG on the free tier, with a preview of the selected model&#x27;s output in the side panel and downstream impact below">
+        <div class="gallery-cap">Interactive DAG</div>
+      </div>
+      <div class="gallery-item" data-full="../../../assets/img/run_performance_2400.png" data-cap="Run performance insights (Pro) — regressions against each node&#x27;s usual time, and the slowest nodes with their trends">
+        <img src="../../../assets/img/run_performance_1200.png" loading="lazy" alt="wickd run performance: a regression and the slowest nodes with recent run trends">
+        <div class="gallery-cap">Run performance (Pro)</div>
+      </div>
+      <div class="gallery-item" data-full="../../../assets/img/test_gaps_2400.png" data-cap="Smarter test suggestions (Pro) — the riskiest untested columns, ranked, with the evidence">
+        <img src="../../../assets/img/test_gaps_1200.png" loading="lazy" alt="wickd Test Gaps: untested columns ranked by risk, with one expanded to show its evidence">
+        <div class="gallery-cap">Test gaps (Pro)</div>
+      </div>
+      <div class="gallery-item" data-full="../../../assets/img/doc_generator_2400.png" data-cap="Documentation generator — warehouse columns added to your YAML, reviewed as a diff before anything is written">
+        <img src="../../../assets/img/doc_generator_1200.png" loading="lazy" alt="wickd review window adding a warehouse column to a schema YAML, opened from Schema Drift">
+        <div class="gallery-cap">Documentation generator</div>
+      </div>
+      <div class="gallery-item" data-full="../../../assets/img/lineage_propagation_2400.png" data-cap="Lineage propagation (Pro) — empty column descriptions filled from the upstream columns they pass through">
+        <img src="../../../assets/img/lineage_propagation_1200.png" loading="lazy" alt="wickd review window with column descriptions inherited from upstream">
+        <div class="gallery-cap">Lineage propagation (Pro)</div>
+      </div>
+      <div class="gallery-item" data-full="../../../assets/img/refactor_2400.png" data-cap="Refactors (Pro) — rename a model everywhere it&#x27;s used, as one multi-file diff to review">
+        <img src="../../../assets/img/refactor_1200.png" loading="lazy" alt="wickd refactor review: a model rename shown as one multi-file diff">
+        <div class="gallery-cap">Refactors (Pro)</div>
+      </div>
+      <div class="gallery-item" data-full="../../../assets/img/dag_export_2400.png" data-cap="DAG exports — interactive HTML, SVG or PNG of exactly what&#x27;s on screen">
+        <img src="../../../assets/img/dag_export_1200.png" loading="lazy" alt="wickd Export DAG dialog with interactive HTML, SVG and PNG formats">
+        <div class="gallery-cap">DAG exports</div>
+      </div>
+      <div class="gallery-item" data-full="../../../assets/img/semantic_layer_2400.png" data-cap="Semantic layer — metrics and semantic models in the DAG, with their definitions and lineage">
+        <img src="../../../assets/img/semantic_layer_1200.png" loading="lazy" alt="wickd DAG with a metric selected, showing its definition and its lineage through a semantic model">
+        <div class="gallery-cap">Semantic layer</div>
+      </div>
+      <div class="gallery-item" data-full="../../../assets/img/semantic_draft_2400.png" data-cap="Semantic layer drafts (Pro) — Wicky drafts a semantic model and metrics, checked first, for you to review as YAML">
+        <img src="../../../assets/img/semantic_draft_1200.png" loading="lazy" alt="wickd review window with a drafted semantic model and metrics, each checked against the warehouse">
+        <div class="gallery-cap">Semantic drafts (Pro)</div>
+      </div>
+      <div class="gallery-item" data-full="../../../assets/img/metric_compare_2400.png" data-cap="Metric compare (Pro) — your uncommitted change against HEAD, with the rows that moved">
+        <img src="../../../assets/img/metric_compare_1200.png" loading="lazy" alt="wickd metric compare: uncommitted changes against HEAD, by country, with the row that changed">
+        <div class="gallery-cap">Metric compare (Pro)</div>
+      </div>
+      <div class="gallery-item" data-full="../../../assets/img/charts_2400.png" data-cap="dbt Charts boards — build snapshots, open them live, and see validation problems">
+        <img src="../../../assets/img/charts_1200.png" loading="lazy" alt="wickd Charts page showing a built dbt Charts board">
+        <div class="gallery-cap">dbt Charts</div>
+      </div>
+      <div class="gallery-item" data-full="../../../assets/img/light_theme_2400.png" data-cap="Light theme — the whole app, shown here with per-column profile stats">
+        <img src="../../../assets/img/light_theme_1200.png" loading="lazy" alt="wickd light theme: file explorer with a column profile">
+        <div class="gallery-cap">Light theme &amp; profiling</div>
+      </div>
+    </div>
+    <!-- screenshots:gallery:end -->
+  </section>
+
+  <footer>
+    <div class="footer-text">
+      <p>wickd by Lamphere Labs</p>
+      <p class="fine">dbt and dbt Core are trademarks of dbt Labs, Inc. wickd is an independent product and is not affiliated with or endorsed by dbt Labs.</p>
+    </div>
+    <div class="links">
+      <a href="https://github.com/EricLamphere/wickd" target="_blank" rel="noreferrer">GitHub</a>
+      <a href="../">← wickd</a>
+    </div>
+  </footer>
+</div>
+
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" id="lightbox-close">Close ✕</button>
+  <button class="lightbox-nav lightbox-prev" id="lightbox-prev" aria-label="Previous image">‹</button>
+  <img id="lightbox-img" src="" alt="">
+  <button class="lightbox-nav lightbox-next" id="lightbox-next" aria-label="Next image">›</button>
+  <div class="lightbox-cap" id="lightbox-cap"></div>
+</div>
+
+<script>
+  (function () {
+    var lightbox = document.getElementById('lightbox');
+    var lightboxImg = document.getElementById('lightbox-img');
+    var lightboxCap = document.getElementById('lightbox-cap');
+    var closeBtn = document.getElementById('lightbox-close');
+    var prevBtn = document.getElementById('lightbox-prev');
+    var nextBtn = document.getElementById('lightbox-next');
+    var items = Array.prototype.slice.call(document.querySelectorAll('.gallery-item'));
+    var currentIndex = -1;
+
+    function show(index) {
+      currentIndex = (index + items.length) % items.length;
+      var item = items[currentIndex];
+      lightboxImg.src = item.getAttribute('data-full');
+      var cap = item.getAttribute('data-cap') || '';
+      lightboxImg.alt = cap;
+      lightboxCap.textContent = cap;
+      lightbox.classList.add('open');
+    }
+
+    items.forEach(function (item, index) {
+      item.addEventListener('click', function () { show(index); });
+    });
+
+    function close() {
+      lightbox.classList.remove('open');
+      lightboxImg.src = '';
+      currentIndex = -1;
+    }
+
+    closeBtn.addEventListener('click', close);
+    prevBtn.addEventListener('click', function (e) { e.stopPropagation(); show(currentIndex - 1); });
+    nextBtn.addEventListener('click', function (e) { e.stopPropagation(); show(currentIndex + 1); });
+    lightbox.addEventListener('click', function (e) {
+      if (e.target === lightbox) close();
+    });
+    document.addEventListener('keydown', function (e) {
+      if (!lightbox.classList.contains('open')) return;
+      if (e.key === 'Escape') close();
+      if (e.key === 'ArrowLeft') show(currentIndex - 1);
+      if (e.key === 'ArrowRight') show(currentIndex + 1);
+    });
+  })();
+</script>
+<script type="module" src="/assets/js/track.js"></script>
