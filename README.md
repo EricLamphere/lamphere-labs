@@ -8,10 +8,21 @@ Static site for [lampherelabs.com](https://lampherelabs.com), hosted on Cloudfla
 index.html              Homepage
 tools/wickd/            wickd product page (lampherelabs.com/tools/wickd)
 assets/img/             Images used across pages
+assets/js/track.js      Click tracking script, included on every page
+functions/api/click.js  Cloudflare Pages Function that stores clicks (POST /api/click)
+db/schema.sql           Click tracking database table
+docs/                   Documentation
+tests/                  Tests for the click tracking code
 _redirects              Cloudflare Pages redirects (old dbt-ui URLs → /tools/wickd)
 ```
 
-No build step — plain HTML/CSS, no framework, no package.json. Add new pages as `<folder>/index.html` so they're reachable at `lampherelabs.com/<folder>`.
+No build step — plain HTML/CSS/JS, no framework, no package.json. Add new pages as `<folder>/index.html` so they're reachable at `lampherelabs.com/<folder>`, and include the tracking script at the bottom of each one.
+
+## Click tracking
+
+Clicks on every link and button are stored in a Cloudflare D1 database, with no cookies or visitor IDs. Visit `lampherelabs.com/?notrack` once in each browser to exclude your own clicks.
+
+See [docs/click-tracking.md](docs/click-tracking.md) for how it works, database setup, and queries for reading the data. Run the tests with `node --test "tests/*.test.mjs"`.
 
 ## How updates go live
 
