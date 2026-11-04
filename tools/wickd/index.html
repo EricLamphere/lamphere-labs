@@ -351,6 +351,19 @@
   }
   .gallery-item:hover { border-color: var(--teal-dim); }
   .gallery-item img { width: 100%; display: block; }
+  .gallery-more { margin-top: 24px; }
+  .gallery-more summary {
+    display: flex;
+    width: fit-content;
+    margin: 0 auto;
+    cursor: pointer;
+    list-style: none;
+  }
+  .gallery-more summary::-webkit-details-marker { display: none; }
+  .gallery-more .when-open,
+  .gallery-more[open] .when-closed { display: none; }
+  .gallery-more[open] .when-open { display: inline; }
+  .gallery-more[open] .gallery-grid { margin-top: 24px; }
   .gallery-cap {
     padding: 10px 12px;
     font-family: 'IBM Plex Mono', monospace;
@@ -602,7 +615,7 @@
     <p class="platform-note">Free and open-source core · Pro adds Wicky, a local AI assistant · macOS on Apple Silicon · Notarized by Apple<span id="download-count" hidden></span></p>
 
     <div class="shot">
-      <img src="../../assets/img/main_pro_2560.png" alt="wickd DAG with column-level impact analysis and Wicky, the local AI assistant, answering questions from warehouse queries">
+      <img src="../../assets/img/main_pro_2560.png" alt="wickd DAG with models expanded to their columns and customer_id&#x27;s lineage highlighted from the raw_customers source through to mart_customer_360, with column-level impact below and Wicky, the local AI assistant, answering a question from a warehouse query">
     </div>
   </section>
 
@@ -717,7 +730,7 @@
       <p>The side panel surfaces dependencies, materialization, test coverage, and run controls without a page navigation — and the same Monaco editor VS Code uses is right there for edits.</p>
     </div>
     <div class="shot">
-      <img src="../../assets/img/main_base_2560.png" alt="wickd file explorer with SQL editor, model properties panel, and the selected model's node DAG">
+      <img src="../../assets/img/main_base_2560.png" alt="wickd file explorer with SQL editor, model properties panel, and the selected model&#x27;s node DAG">
     </div>
   </section>
 
@@ -725,42 +738,121 @@
     <div class="section-head">
       <p class="eyebrow">Take a look around</p>
       <h2>Every page, right inside the app.</h2>
-      <p>From project discovery to schema drift checks — a tour of what's actually in the window when you're using wickd.</p>
+      <p>From metric dashboards to schema drift checks — a tour of what's actually in the window when you're using wickd.</p>
     </div>
+    <!-- screenshots:gallery:start -->
     <div class="gallery-grid">
-      <div class="gallery-item" data-full="../../assets/img/app_home_2400.png" data-cap="Project discovery — scans your workspace for dbt projects">
-        <img src="../../assets/img/app_home_1200.png" loading="lazy" alt="wickd project list homepage">
-        <div class="gallery-cap">Homepage</div>
+      <div class="gallery-item" data-full="../../assets/img/metric_dashboard_2400.png" data-cap="Metric dashboards — a drag-and-drop builder over YAML files in your project">
+        <img src="../../assets/img/metric_dashboard_1200.png" loading="lazy" alt="wickd dashboard builder with metrics on the left, widgets on the right and charts on the canvas">
+        <div class="gallery-cap">Metric dashboards</div>
       </div>
-      <div class="gallery-item" data-full="../../assets/img/project_home_wicky_2400.png" data-cap="Project home — counts, quick runs and recent runs, with Wicky (Pro) giving an overview of the project">
-        <img src="../../assets/img/project_home_wicky_1200.png" loading="lazy" alt="wickd project home page with Wicky, the local AI assistant, summarising the project">
-        <div class="gallery-cap">Project home &amp; Wicky (Pro)</div>
+      <div class="gallery-item" data-full="../../assets/img/metric_explorer_2400.png" data-cap="Metric explorer — build a query in one line, with the chart, the rows and the SQL MetricFlow writes">
+        <img src="../../assets/img/metric_explorer_1200.png" loading="lazy" alt="wickd metric explorer with revenue by country, its settings, and the SQL MetricFlow generated">
+        <div class="gallery-cap">Metric explorer</div>
       </div>
-      <div class="gallery-item" data-full="../../assets/img/init_pipeline_2400.png" data-cap="Initialization — pip install, dbt deps and your own setup scripts as one pipeline, with Wicky (Pro) alongside">
-        <img src="../../assets/img/init_pipeline_1200.png" loading="lazy" alt="wickd Initialization page: setup steps connected by a flowing pipeline, with Wicky open on the right">
-        <div class="gallery-cap">Init pipeline</div>
+      <div class="gallery-item" data-full="../../assets/img/metric_monitors_2400.png" data-cap="Metric monitors (Pro) — anomalies against a seasonal baseline, with the expected band">
+        <img src="../../assets/img/metric_monitors_1200.png" loading="lazy" alt="wickd metric monitor chart with its expected band and flagged periods">
+        <div class="gallery-cap">Metric monitors (Pro)</div>
+      </div>
+      <div class="gallery-item" data-full="../../assets/img/metric_debug_2400.png" data-cap="Metric debugging — MetricFlow&#x27;s plan step by step and warehouse checks, with the number explained (Pro)">
+        <img src="../../assets/img/metric_debug_1200.png" loading="lazy" alt="wickd metric debugging: a written explanation, MetricFlow&#x27;s plan step by step, and quality checks">
+        <div class="gallery-cap">Metric debugging (Pro)</div>
+      </div>
+      <div class="gallery-item" data-full="../../assets/img/source_control_2400.png" data-cap="Source control with contract checks (Pro) — what your uncommitted work breaks, before you commit">
+        <img src="../../assets/img/source_control_1200.png" loading="lazy" alt="wickd source control with a diff, and contract check results for the uncommitted change">
+        <div class="gallery-cap">Source control &amp; contracts (Pro)</div>
+      </div>
+      <div class="gallery-item" data-full="../../assets/img/data_diff_2400.png" data-cap="Data diff (Pro) — your changed model built in dev and compared with prod, row by row">
+        <img src="../../assets/img/data_diff_1200.png" loading="lazy" alt="wickd data diff comparing a changed model in dev with prod, showing changed columns and sample rows">
+        <div class="gallery-cap">Data diff (Pro)</div>
       </div>
       <div class="gallery-item" data-full="../../assets/img/docs_2400.png" data-cap="Native docs browser — columns, descriptions, tests, lineage, all searchable">
         <img src="../../assets/img/docs_1200.png" loading="lazy" alt="wickd native docs browser showing model detail">
         <div class="gallery-cap">Docs browser</div>
       </div>
       <div class="gallery-item" data-full="../../assets/img/sql_workspace_2400.png" data-cap="SQL Workspace — Monaco editor, ref autocomplete, compiled SQL, and live query results">
-        <img src="../../assets/img/sql_workspace_1200.png" loading="lazy" alt="wickd SQL workspace with ref autocomplete and query results">
+        <img src="../../assets/img/sql_workspace_1200.png" loading="lazy" alt="wickd SQL workspace with a ranking query in the editor and its results beside it">
         <div class="gallery-cap">SQL Workspace</div>
       </div>
-      <div class="gallery-item" data-full="../../assets/img/run_history_2400.png" data-cap="Run history — every invocation, with duration, per-node results and timing trends">
-        <img src="../../assets/img/run_history_1200.png" loading="lazy" alt="wickd run history with per-node results and the execution DAG">
+      <div class="gallery-item" data-full="../../assets/img/run_history_2400.png" data-cap="Run history — every invocation, and a timeline of what each dbt thread was doing, with the critical path (Pro) highlighted">
+        <img src="../../assets/img/run_history_1200.png" loading="lazy" alt="wickd run history with a 4-thread run&#x27;s timeline, showing each model&#x27;s bar per thread and the critical path highlighted">
         <div class="gallery-cap">Run history</div>
       </div>
-      <div class="gallery-item" data-full="../../assets/img/health_2400.png" data-cap="Health — one overview of your connection, schema drift, and source freshness, with Run all">
-        <img src="../../assets/img/health_1200.png" loading="lazy" alt="wickd Health overview with connection, schema drift and source freshness cards, and a terminal open below">
-        <div class="gallery-cap">Health checks</div>
-      </div>
-      <div class="gallery-item" data-full="../../assets/img/light_theme_2400.png" data-cap="Light theme — the whole app, not just a dark mode afterthought">
-        <img src="../../assets/img/light_theme_1200.png" loading="lazy" alt="wickd light theme: file explorer with a column profile and the node DAG">
-        <div class="gallery-cap">Light theme</div>
+      <div class="gallery-item" data-full="../../assets/img/health_2400.png" data-cap="Health — your connection, schema drift, source freshness and semantic layer at a glance, with a terminal below">
+        <img src="../../assets/img/health_1200.png" loading="lazy" alt="wickd Health overview with connection, drift, freshness and semantic layer cards, and a terminal open below">
+        <div class="gallery-cap">Health &amp; terminal</div>
       </div>
     </div>
+    <details class="gallery-more">
+      <summary class="btn btn-secondary"><span class="when-closed">See 16 more screenshots</span><span class="when-open">Show fewer</span></summary>
+      <div class="gallery-grid">
+        <div class="gallery-item" data-full="../../assets/img/app_home_2400.png" data-cap="Project discovery, with ⌘K finding models and columns across every project">
+          <img src="../../assets/img/app_home_1200.png" loading="lazy" alt="wickd homepage with the command palette searching models and columns across projects">
+          <div class="gallery-cap">Homepage &amp; search</div>
+        </div>
+        <div class="gallery-item" data-full="../../assets/img/combined_docs_2400.png" data-cap="Combined docs across your projects, with Wicky (Pro) answering questions about all of them">
+          <img src="../../assets/img/combined_docs_1200.png" loading="lazy" alt="wickd combined docs across projects, with Wicky open on the right">
+          <div class="gallery-cap">Combined docs (Pro)</div>
+        </div>
+        <div class="gallery-item" data-full="../../assets/img/project_home_2400.png" data-cap="Project home — counts, quick runs and recent runs, with any dbt command a keystroke away">
+          <img src="../../assets/img/project_home_1200.png" loading="lazy" alt="wickd project home page with counts, quick runs, a dbt command box and recent runs">
+          <div class="gallery-cap">Project home</div>
+        </div>
+        <div class="gallery-item" data-full="../../assets/img/init_pipeline_2400.png" data-cap="Initialization — pip install, dbt deps and your own setup scripts as one pipeline">
+          <img src="../../assets/img/init_pipeline_1200.png" loading="lazy" alt="wickd Initialization page: setup steps connected by a flowing pipeline">
+          <div class="gallery-cap">Init pipeline</div>
+        </div>
+        <div class="gallery-item" data-full="../../assets/img/dag_base_2400.png" data-cap="The DAG — selectors, filters and live status, with any model&#x27;s output beside it and its downstream impact with risk flags below">
+          <img src="../../assets/img/dag_base_1200.png" loading="lazy" alt="wickd DAG on the free tier, with a preview of the selected model&#x27;s output in the side panel and downstream impact below">
+          <div class="gallery-cap">Interactive DAG</div>
+        </div>
+        <div class="gallery-item" data-full="../../assets/img/run_performance_2400.png" data-cap="Run performance insights (Pro) — regressions against each node&#x27;s usual time, and the slowest nodes with their trends">
+          <img src="../../assets/img/run_performance_1200.png" loading="lazy" alt="wickd run performance: a regression and the slowest nodes with recent run trends">
+          <div class="gallery-cap">Run performance (Pro)</div>
+        </div>
+        <div class="gallery-item" data-full="../../assets/img/test_gaps_2400.png" data-cap="Smarter test suggestions (Pro) — the riskiest untested columns, ranked, with the evidence">
+          <img src="../../assets/img/test_gaps_1200.png" loading="lazy" alt="wickd Test Gaps: untested columns ranked by risk, with one expanded to show its evidence">
+          <div class="gallery-cap">Test gaps (Pro)</div>
+        </div>
+        <div class="gallery-item" data-full="../../assets/img/doc_generator_2400.png" data-cap="Documentation generator — warehouse columns added to your YAML, reviewed as a diff before anything is written">
+          <img src="../../assets/img/doc_generator_1200.png" loading="lazy" alt="wickd review window adding a warehouse column to a schema YAML, opened from Schema Drift">
+          <div class="gallery-cap">Documentation generator</div>
+        </div>
+        <div class="gallery-item" data-full="../../assets/img/lineage_propagation_2400.png" data-cap="Lineage propagation (Pro) — empty column descriptions filled from the upstream columns they pass through">
+          <img src="../../assets/img/lineage_propagation_1200.png" loading="lazy" alt="wickd review window with column descriptions inherited from upstream">
+          <div class="gallery-cap">Lineage propagation (Pro)</div>
+        </div>
+        <div class="gallery-item" data-full="../../assets/img/refactor_2400.png" data-cap="Refactors (Pro) — rename a model everywhere it&#x27;s used, as one multi-file diff to review">
+          <img src="../../assets/img/refactor_1200.png" loading="lazy" alt="wickd refactor review: a model rename shown as one multi-file diff">
+          <div class="gallery-cap">Refactors (Pro)</div>
+        </div>
+        <div class="gallery-item" data-full="../../assets/img/dag_export_2400.png" data-cap="DAG exports — interactive HTML, SVG or PNG of exactly what&#x27;s on screen">
+          <img src="../../assets/img/dag_export_1200.png" loading="lazy" alt="wickd Export DAG dialog with interactive HTML, SVG and PNG formats">
+          <div class="gallery-cap">DAG exports</div>
+        </div>
+        <div class="gallery-item" data-full="../../assets/img/semantic_layer_2400.png" data-cap="Semantic layer — metrics and semantic models in the DAG, with their definitions and lineage">
+          <img src="../../assets/img/semantic_layer_1200.png" loading="lazy" alt="wickd DAG with a metric selected, showing its definition and its lineage through a semantic model">
+          <div class="gallery-cap">Semantic layer</div>
+        </div>
+        <div class="gallery-item" data-full="../../assets/img/semantic_draft_2400.png" data-cap="Semantic layer drafts (Pro) — Wicky drafts a semantic model and metrics, checked first, for you to review as YAML">
+          <img src="../../assets/img/semantic_draft_1200.png" loading="lazy" alt="wickd review window with a drafted semantic model and metrics, each checked against the warehouse">
+          <div class="gallery-cap">Semantic drafts (Pro)</div>
+        </div>
+        <div class="gallery-item" data-full="../../assets/img/metric_compare_2400.png" data-cap="Metric compare (Pro) — your uncommitted change against HEAD, with the rows that moved">
+          <img src="../../assets/img/metric_compare_1200.png" loading="lazy" alt="wickd metric compare: uncommitted changes against HEAD, by country, with the row that changed">
+          <div class="gallery-cap">Metric compare (Pro)</div>
+        </div>
+        <div class="gallery-item" data-full="../../assets/img/charts_2400.png" data-cap="dbt Charts boards — build snapshots, open them live, and see validation problems">
+          <img src="../../assets/img/charts_1200.png" loading="lazy" alt="wickd Charts page showing a built dbt Charts board">
+          <div class="gallery-cap">dbt Charts</div>
+        </div>
+        <div class="gallery-item" data-full="../../assets/img/light_theme_2400.png" data-cap="Light theme — the whole app, shown here with per-column profile stats">
+          <img src="../../assets/img/light_theme_1200.png" loading="lazy" alt="wickd light theme: file explorer with a column profile">
+          <div class="gallery-cap">Light theme &amp; profiling</div>
+        </div>
+      </div>
+    </details>
+    <!-- screenshots:gallery:end -->
   </section>
 
   <section id="pricing">
