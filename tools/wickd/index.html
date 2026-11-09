@@ -753,7 +753,7 @@
     <div class="section-head">
       <p class="eyebrow">Pricing</p>
       <h2>Free for the whole workflow. Pro adds Wicky.</h2>
-      <p>wickd's core is free and open-source, permanently. Pro is an optional subscription that adds Wicky, a local AI assistant, plus column-level lineage, column-level impact analysis, contract checks, data diff, lineage propagation, run performance insights, refactors, smarter test suggestions, semantic layer drafts, metric monitors, metric compare and metric explanations, with more on the way. It also helps fund continued development.</p>
+      <p>wickd's core is free and open-source, permanently. Pro is an optional subscription that adds Wicky, a local AI assistant, plus column-level lineage, column-level impact analysis, contract checks, smallest safe builds, data diff, lineage propagation, run performance insights, refactors, smarter test suggestions, semantic layer drafts, metric monitors, metric compare and metric explanations, with more on the way. It also helps fund continued development.</p>
     </div>
     <div class="plans">
       <div class="plan">
@@ -775,6 +775,7 @@
           <li>dbt Charts boards — the <a href="https://docs.getdbt.com/guides/dbt-charts">dbt Charts</a> boards in your project's <code>charts/</code> folder, built as snapshots or opened live with working filters, with validation problems pointed at the line; metric dashboards export to a board</li>
           <li>Metric debugging — when a number looks wrong, see MetricFlow's plan step by step and check it on your warehouse: rows in and in range, what the filter drops, nulls, join fan-out (double counting), unmatched rows and messy dimension values; reconcile it with a plain SQL query</li>
           <li>Run history — every invocation, with a timeline of what each dbt thread was doing and a DAG overlay of each model's median run time</li>
+          <li>Slim builds — build only what changed vs your production manifest (from a git ref or a folder of prod artifacts), previewed first; plus defer to prod, clone from prod and retry a failed run</li>
           <li>Live sync — dbt runs and git changes made outside the app show up without a reload</li>
           <li>Command palette (⌘K) — jump to any page or model, or run any dbt command</li>
           <li>Search across projects — find a model, source or column in any project and jump straight to it</li>
@@ -791,6 +792,7 @@
           <li>Column-level lineage tracing across the DAG, derived from compiled SQL — no yml docs required, and included in interactive DAG exports</li>
           <li>Column-level impact analysis — only the columns, models &amp; tests a change reaches, including through filters and joins</li>
           <li>Contract checks — before you merge, the columns your changes remove, rename or retype and everything that still uses them (models, tests, exposures, semantic models, metrics, dashboards and monitors), plus models that no longer match their enforced contract</li>
+          <li>Smallest safe build — narrow a slim build to the downstream models that actually read a column you changed, using column-level lineage</li>
           <li>Data diff — build your changed models in dev and compare them with prod row by row: rows added, removed and changed, which columns changed and by how much, schema differences and sample rows, in-warehouse or across separate connections</li>
           <li>Lineage propagation — fill empty column descriptions from the upstream columns they pass through, and trace tagged columns like <code>pii</code> to every model, column and exposure they reach</li>
           <li>Run performance insights — each run's critical path, models that got slower than usual, and recommendations like making a model incremental or raising threads</li>
