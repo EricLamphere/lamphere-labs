@@ -776,6 +776,7 @@
           <li>dbt Charts boards — the <a href="https://docs.getdbt.com/guides/dbt-charts">dbt Charts</a> boards in your project's <code>charts/</code> folder, built as snapshots or opened live with working filters, with validation problems pointed at the line; metric dashboards export to a board</li>
           <li>Metric debugging — when a number looks wrong, see MetricFlow's plan step by step and check it on your warehouse: rows in and in range, what the filter drops, nulls, join fan-out (double counting), unmatched rows and messy dimension values; reconcile it with a plain SQL query</li>
           <li>Run history — every invocation, with a timeline of what each dbt thread was doing and a DAG overlay of each model's median run time</li>
+          <li>Scheduled runs — run any dbt command every N hours or on a cron schedule while wickd is open; failed and skipped runs are flagged</li>
           <li>Slim builds — build only what changed vs your production manifest (from a git ref or a folder of prod artifacts), previewed first; plus defer to prod, clone from prod and retry a failed run</li>
           <li>Live sync — dbt runs and git changes made outside the app show up without a reload</li>
           <li>Command palette (⌘K) — jump to any page or model, or run any dbt command</li>
