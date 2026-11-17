@@ -781,6 +781,7 @@
           <li>Run history — every invocation, with a timeline of what each dbt thread was doing and a DAG overlay of each model's median run time</li>
           <li>Scheduled runs — run any dbt command every N hours or on a cron schedule while wickd is open; failed and skipped runs are flagged</li>
           <li>Slim builds — build only what changed vs your production manifest (from a git ref or a folder of prod artifacts), previewed first; plus defer to prod, clone from prod and retry a failed run</li>
+          <li>Package manager — your dbt packages with what's locked, installed and latest on dbt Hub, and whether each supports your dbt-core; add from dbt Hub, upgrade or remove as a reviewed diff, then run <code>dbt deps</code> and see what changed in the lock file</li>
           <li>Live sync — dbt runs and git changes made outside the app show up without a reload</li>
           <li>Automatic updates — the app tells you when a new version is out, shows what's new, and updates and restarts in one click</li>
           <li>Command palette (⌘K) — jump to any page or model, or run any dbt command</li>
